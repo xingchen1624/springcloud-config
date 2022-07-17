@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js关系运算符</title>
+    <script type="text/javascript">
+        /**
+         * 关系运算符，判断两个值的关系，关系成立返回true，关系不成立返回false
+         * 对于非数值的情况
+         *      将非数值转换为数值类型，然后比较
+         *      但是特殊情况：如果比较符两侧都是字符串，必须两侧都是字符串的时候，比较的时候
+         *      不再是转为数字比较，而是比较的字符编码（Unicode）
+         *      比较字符编码的时候是一位一位比较，如果第一位就能比较出关系，则不再比较后续的，
+         *      如果两位一样，则比较下一位
+         *      比较中文没有意义，英文字母可以比较
+         */
+        console.log(1 >= true);
+        console.log(1 >= null);
+        //任何值和NaN做比较都是false
+        console.log(1 >= NaN);
+        console.log(1 >= undefined);
+        console.log(1 >= "0");
+        console.log(1 >= "a");
+        console.log("1" < "5");
+        //比较字符编码的时候是一位一位比较，如果两位一样，则比较下一位
+        //第一位 是1 和 5，1的Unicode小于5的，所以成立。所以如果比较两个字符串型的数字
+        //可能会得出错误结论，可以通过 + 将其中一个转为数字即可
+        console.log("11" < "5"); //true
+        console.log("11" < +"5"); //true
+        console.log("a" < "b");
+        console.log("abc" < "b");
+        console.log("abc" < "bcd");
+        console.log("bbc" < "b");
+
+
+        console.log(Number('aa'));
+        console.log(+undefined);
+
+        console.log("--------------------unicode编码输出--------------------------");
+        /**
+         * 在字符串中使用转义字符+Unicode的四位编码即可
+         * \u+四位编码
+         */
+        console.log('\u0031');
+
+
+    </script>
+</head>
+<body>
+    <!--
+        在HTML中使用Unicode编码
+        格式：&#编码;  这里的编码不是Unicode码，而是10进制编码。所以需要将对应Unicode码转为10进制
+        转换方式：打开电脑上的计算器，切换到“程序员”模式，切换到16进制(HEX)输入Unicode码,DEC就是对应
+        的十进制
+    -->
+    <h1 style="font-size: 120px;color: palevioletred;">&#9760;</h1>
+</body>
+</html>

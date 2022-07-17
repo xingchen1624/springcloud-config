@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet">
+    <link th:href="@{/css/myCss.css}" rel="stylesheet">
+    <title>主页面</title>
+</head>
+<body>
+<div class="panel panel-primary">
+    <!--插入抽取的公共代码块-->
+    <div th:replace="~{commons/common::head(active='login.html')}"></div>
+    <!--插入抽取的公共代码块-->
+    <div th:replace="~{commons/common::sidebar}"></div>
+
+    <div class="panel-heading">
+        <div>
+            <img alt="GTVG logo" title="GTVG logo" th:src="@{/icons/两个少女.jpg}" />
+        </div>
+    </div>
+
+</div>
+<script th:src="@{/js/jquery-1.11.3.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

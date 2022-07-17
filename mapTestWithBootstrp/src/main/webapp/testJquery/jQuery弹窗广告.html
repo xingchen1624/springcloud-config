@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery弹窗广告</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .ad{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
+        .ad>span{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            text-align: center;
+            /*使span中的文字垂直居中*/
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            //1.监听span的点击事件
+            $("span").click(function () {
+                /*
+                * 从DOM中删除所有匹配的元素。
+                这个方法不会把匹配的元素从jQuery对象中删除，因而可以在将来再使用这些匹配的元素。
+                但除了这个元素本身得以保留之外，其他的比如绑定的事件，附加的数据等都会被移除
+                * */
+                $(".ad").remove();
+            });
+
+            //2.执行广告相关动画
+            /*$(".ad").slideDown(1000,function (event) {
+                $(".ad").fadeOut(1000,function (event) {
+                    $(".ad").fadeIn(1000);
+                });
+            });*/
+
+            //利用动画队列里动画排队执行的特性，上面的代码可以简化为下面的写法
+            $(".ad").stop().slideDown(1000).fadeOut(1000).fadeIn(1000);
+        })
+    </script>
+</head>
+<body>
+    <div class="ad">
+        <img src="../static/icons/两个少女.jpg" alt="弹窗广告">
+        <span>X</span>
+    </div>
+</body>
+</html>

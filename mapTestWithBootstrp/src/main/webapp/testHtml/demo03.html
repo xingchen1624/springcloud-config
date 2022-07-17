@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css测试</title>
+    <!--
+        2.css样式写在head中的style标签中
+        使用css选择器选中页面元素设置样式，可以复用样式
+    -->
+    <style type="text/css">
+        p{
+            color: #6ab14a;
+            font-size: 30px;
+        }
+    </style>
+
+    <!--
+        引入外部css文件
+        完全让HTML结构和表现分离，复用更方便。一个页面加载过后，其它页面都可以复用
+    -->
+    <link rel="stylesheet" type="text/css" href="testCss.css"/>
+</head>
+<body>
+    <!--
+        1.样式直接写在标签的style属性中，这种写法叫内联样式
+        该样式只对当前的元素起作用
+       -->
+    <p style="font-family:Courier New, Courier, monospace;color: #d2588b;font-size: 58px;">
+        锄禾日当午，汗滴禾下土
+    </p>
+    <p>谁知盘中餐，粒粒皆辛苦</p>
+</body>
+</html>

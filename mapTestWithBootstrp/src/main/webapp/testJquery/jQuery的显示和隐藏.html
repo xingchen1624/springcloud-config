@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery的显示和隐藏动画</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: #1c6ca2;
+            display: none;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            $("button").eq(0).click(function () {
+                //$("div").css("display","block");
+                $("div").show(1000,function () {
+                    //动画执行完毕后调用的回调函数
+                    alert("show complete!");
+                });
+            });
+            $("button").eq(1).click(function () {
+                //$("div").css("display","none");
+                $("div").hide(1000,function () {
+                    //动画执行完毕后调用的回调函数
+                    alert("hide complete!");
+                });
+            });
+            $("button").eq(2).click(function () {
+                $("div").toggle(1000,function () {
+                    alert("toggle complete!");
+                });
+            });
+        })
+    </script>
+    
+</head>
+<body>
+    <div></div>
+    <button>显示</button>
+    <button>隐藏</button>
+    <button>切换</button>
+</body>
+</html>

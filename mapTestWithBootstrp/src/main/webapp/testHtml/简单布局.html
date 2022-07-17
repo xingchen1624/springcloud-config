@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单页面布局练习</title>
+    <style type="text/css">
+        /*
+            清楚浏览器默认样式
+        */
+        *{
+            margin: 0px;
+        }
+
+        .header{
+            width: 1000px;
+            height: 100px;
+            background-color: #d2346e;
+            margin: 0 auto;
+        }
+        .content{
+            width: 1000px;
+            height: 450px;
+            background-color: #2ECEE7;
+            margin: 10px auto;
+        }
+
+        /*
+            设置content子元素样式
+        */
+        .leftDiv{
+            width: 190px;
+            height: 450px;
+            background-color: #2E7DB4;
+            float: left;
+        }
+        .centerDiv{
+            width: 600px;
+            height: 450px;
+            background-color: #be2626;
+            float: left;
+            margin: 0px 10px;
+        }
+        .rightDiv{
+            width: 190px;
+            height: 450px;
+            background-color: #00BE67;
+            float: left;
+        }
+
+        .footer{
+            width: 1000px;
+            height: 100px;
+            background-color: #1D2024;
+            margin: 10px auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header"></div>
+    <div class="content">
+        <div class="leftDiv"></div>
+        <div class="centerDiv"></div>
+        <div class="rightDiv"></div>
+    </div>
+    <div class="footer"></div>
+</body>
+</html>

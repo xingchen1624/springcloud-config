@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery和js入口函数</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        /*
+        * 关于js和jQuery的入口函数
+        * JS的入口函数window.onload函数有一个覆盖的问题，当文档中出现2个window.onload函数的时候，后者会覆盖前者，导致功能实现不了。
+        * 但是JQuery却没有这样的问题，重要是因为JQuery入口函数只是对封装好了的方法的一个调用，只不过传的参数不同而已
+        *
+        * JS的window.onload事件必须要等到所有内容，以及外部图片之类的文件加载完之后，才会去执行
+        * JQuery入口函数是在所有标签加载完之后，就会去执行
+        * */
+
+        /*
+        原生js入口写法
+        */
+        window.onload = function (ev) {
+            //1.通过原生js拿到dom元素
+            var img = document.getElementsByTagName("img")[0];
+            console.log(img);
+
+            //2.通过原生js拿到dom元素的宽高
+            var width = window.getComputedStyle(img).width;
+            console.log(width);
+        }
+
+        /*
+        jquery入口写法
+        */
+        $(document).ready(function () {
+            var $img = $('img')[0];
+        });
+
+        /*jquery简写入口*/
+        $(function () {
+            var $img = $('img')[0];
+            console.log($img);
+            //清空缓存后，jQuery拿不到元素的宽度，因为jQuery在dom元素加载完后就执行，不会等远程图片加载
+            var $width = $img.width;
+            console.log($width);
+        });
+
+        //jquery入口第三种写法，文档加载完毕， 图片也加载完毕的时候， 再执行这个函数。
+        $(window).ready(function () {
+            //alert("hello3");
+        });
+
+    </script>
+</head>
+<body>
+<img src="https://gw.alicdn.com/tfs/TB1DP0yAoY1gK0jSZFMXXaWcVXa-1190-70.png" alt="图片加载...">
+</body>
+</html>

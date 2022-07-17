@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzc.springboot.ssm.dao.TreeMapper" >
+    <insert id="saveGridInfo" parameterType="map">
+        insert into org_info(org_id,org_name,p_id,location) values (#{gridNo},#{gridName},#{supGridNo},#{location});
+    </insert>
+    <select id="getTreeData" resultType="OrgVo">
+        SELECT
+          org_id as orgId,
+          org_name as orgName,
+          p_id as pId
+          FROM org_info
+    </select>
+
+    <select id="getTreeDataById" resultType="OrgVo" parameterType="string">
+        SELECT
+          org_id as orgId,
+          org_name as orgName,
+          p_id as pId
+          FROM org_info
+          WHERE org_id = #{orgId}
+    </select>
+
+    <select id="getGridInfo" resultType="string" parameterType="string">
+        SELECT
+          location
+          FROM org_info
+          WHERE org_id = #{id}
+    </select>
+</mapper>

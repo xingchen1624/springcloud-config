@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航条练习</title>
+    <style type="text/css">
+        /*
+            去除浏览器的默认样式
+        */
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .nav{
+            /*
+                去除项目符号  小圆点等
+            */
+            list-style: none;
+            /*设置背景色*/
+            background-color: dodgerblue;
+            /*
+                设置宽度
+                注意：在ie6中，如果为一个元素指定了宽度，则会开启hasLayout，设置了宽度，可以不用写zoom:1
+            */
+            width: 1000px;
+            /*设置元素居中*/
+            margin: 50px auto;
+            /*解决高度塌陷*/
+            overflow: hidden;
+        }
+
+        .nav li{
+            float: left;
+            width: 25%;
+        }
+
+        .nav a{
+            /*将a元素转换为块元素*/
+            display: block;
+            /*为a指定宽度，a的父元素是li，所以li里设置了宽度是25%（相对父元素ul），这样a的宽度就是ul的25%*/
+            width: 100%;
+            /*设置文字居中*/
+            text-align: center;
+            /*设置字体颜色*/
+            color: white;
+            /*设置字体加粗*/
+            font-weight: bold;
+            /*设置内边距*/
+            padding: 5px 0;
+            /*去除下划线*/
+            text-decoration: none;
+        }
+
+        .nav a:hover{
+            background-color: #be2626;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">新闻</a></li>
+        <li><a href="#">联系</a></li>
+        <li><a href="#">关于</a></li>
+    </ul>
+</body>
+</html>

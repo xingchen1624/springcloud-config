@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>样式的优先级</title>
+    <style type="text/css">
+        /*
+            当多个样式选择器选中了同一个元素，采用哪个样式，根据选择器的优先级（权重）来选择
+            使用哪个选择器
+            ①内联样式的优先级权重 1000
+            ②id选择器优先级权重 100
+            ③类和伪类选择器优先级权重 10
+            ④元素选择器优先级权重 1
+            ⑤通配符选择器(*)优先级权重 0
+            ⑥继承的样式没有优先级权重，比通配符选择器还低
+
+            注意，当一个选择器有多个选择器构成的时候（交集选择器），优先级权重要相加来算
+            eg: p#p1  优先级权重是1+100=101
+            如果同级别选择器权重一样，后面的覆盖前面的样式
+            并集选择器的优先级权重分开算，不能相加   eg:  div,p,span{}
+
+            可以在样式后面添加 !important，该样式会获得最高的权重，但在开发中尽量不要使用
+        */
+        .p2{
+            background-color: blanchedalmond !important;
+        }
+
+        #p1{
+            background-color: #3c763d;
+        }
+    </style>
+</head>
+<body>
+    <p id="p1" class="p2" style="background-color: #2B7DBC;">
+        这是一个段落
+        <span>
+            这是段落中的span
+        </span>
+    </p>
+</body>
+</html>

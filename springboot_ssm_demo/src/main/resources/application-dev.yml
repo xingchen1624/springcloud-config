@@ -1,0 +1,123 @@
+#driver-class-name: com.mysql.jdbc.Driver适用于mysql5
+#com.mysql.cj.jdbc.Driver适用于mysql6及以上
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/localtestdb?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #springboot默认不注入这些属性值，需要自己绑定
+    #druid数据源专有配置
+    #第一种使用druid方式的配置，需要配合DruidConfig.java配置类来使用
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+    #配置监控统计拦截的filters，stat：监控统计、log4j：日志记录、wall：防御sql注入
+    #如果允许报错，java.lang.ClassNotFoundException: org.apache.Log4j.Properity
+    #则导入log4j 依赖就行
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  ########################配置thymeleaf模板###############################
+  #关闭thymeleaf模板的缓存
+  thymeleaf:
+    cache: false
+    
+  #######################################################################  
+  
+  #mail配置
+  mail:
+    username: 848719131@qq.com
+    #（这里的jgrronukfxtfbdag是开启pop3/smtp的时候，
+    #给的一段授权码，而不是真实的邮箱密码）
+    password: jgrronukfxtfbdag  
+    host: smtp.qq.com
+    #开启ssl加密认证（狂神说是qq邮箱特有的，网上看到其它邮箱也可以，待验证）  
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+
+  #redis相关配置
+  redis:
+    host: 192.168.159.105
+    port: 6379
+#   第二种使用druid方式的配置，不需要配置类
+#    druid:
+#      # 下面为连接池的补充设置，应用到上面所有数据源中
+#      # 初始化大小，最小，最大
+#      initial-size: 5
+#      min-idle: 5
+#      max-active: 20
+#      # 配置获取连接等待超时的时间
+#      max-wait: 60000
+#      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#      time-between-eviction-runs-millis: 60000
+#      # 配置一个连接在池中最小生存的时间，单位是毫秒
+#      min-evictable-idle-time-millis: 300000
+#      validation-query: SELECT 1 FROM DUAL
+#      test-while-idle: true
+#      test-on-borrow: false
+#      test-on-return: false
+#      # 打开PSCache，并且指定每个连接上PSCache的大小
+#      pool-prepared-statements: true
+#      #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+#      max-pool-prepared-statement-per-connection-size: 20
+#      filters: stat,wall,log4j
+#      use-global-data-source-stat: true
+#      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+#      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#      # 配置监控服务器
+#      stat-view-servlet:
+#        login-username: admin
+#        login-password: 123456
+#        reset-enable: false
+#        url-pattern: /druid/*
+#        # 添加IP白名单
+#        #allow:
+#        # 添加IP黑名单，当白名单和黑名单重复时，黑名单优先级更高
+#        #deny:
+#        enabled: true
+#      web-stat-filter:
+#        # 添加过滤规则
+#        url-pattern: /*
+#        # 忽略过滤格式
+#        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+
+#springboot整合mybatis配置
+mybatis:
+  #定义别名,可省略写mybatis的xml中的resultType的全路径
+  type-aliases-package: com.lzc.springboot.ssm.domain
+  #Mybatis扫描
+  mapper-locations: classpath*:mapper/*.xml
+  
+
+#端口号
+server:
+  port: 8080
+  
+#dubbo相关配置
+dubbo:
+  application:
+    #服务应用名字
+    name: dubbo_provider
+    #注册中心地址
+  registry:
+    address: zookeeper://127.0.0.1:2181
+    #哪些服务要被注册
+  scan:
+    base-packages: com.lzc.springboot.ssm.service.impl

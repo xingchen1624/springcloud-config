@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery命名空间</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            /*
+            * 给事件加命名空间
+            * eg: click.a  在对应事件后面加 .xxx
+            * */
+            $(".myEvent").on("click.a",function (event) {
+                alert("click1");
+            });
+            $(".myEvent").on("click.b",function (event) {
+                alert("click2");
+            });
+
+            $(".myEvent").trigger("click.a");
+
+        });
+    </script>
+    <style type="text/css">
+        .myEvent{
+            width: 200px;
+            height: 200px;
+            background-color: #18a665;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="myEvent"></div>
+</body>
+</html>

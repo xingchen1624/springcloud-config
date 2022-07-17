@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器</title>
+    <style type="text/css">
+        /*
+            属性选择器：选择具有某个属性的元素
+            语法： 元素[属性名]   元素[属性名="属性值"]
+            元素[属性名^($,*)="属性值"](^表示已属性值开头的,$表示已属性值结尾的,*只要包含属性值的)
+        */
+        p[title]{
+            background-color: #00B83F;
+        }
+        p[title="five"]{
+            background-color: orangered;
+        }
+        p[title^="tw"]{
+            background-color: greenyellow;
+        }
+
+        /*
+            子元素的伪类选择器
+            :first-child 选中第一个子元素  :last-child最后一个子元素
+            nth-child(n) 选中n位置的元素,even表示偶数 odd表示基数，可以用于nth-child中
+         */
+        /*选择属于其父元素的首个子元素的每个 <p> 元素*/
+        p:first-child{
+            font-size: 30px;
+        }
+        p:nth-child(3){
+            font-size: 30px;
+        }
+        p:nth-child(even){
+            font-size: 30px;
+        }
+
+        /*
+            类似于上面的child系列，但是
+            :first-of-type  :last-of-type  :nth-of-type
+            是在同类型的元素中选择子元素，而不是所有的元素中
+        */
+        span:last-of-type{
+            color: #d2346e;
+        }
+
+        /**
+            兄弟元素选择器
+            语法：元素1+元素2  选中元素1后的一个兄弟元素（一个）
+            元素1~元素2 选中元素1后的所有兄弟元素
+         */
+        p + span{
+            font-size: 40px;
+        }
+
+        /*
+            否定伪类选择器：从选择的元素中剔除某些元素
+        */
+        p:not([title="five"]){
+            font-size: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <span>span标签1</span>
+    <p title="one">段落1</p>
+    <p title="two">段落2</p>
+    <p>段落3</p>
+    <span>span标签2</span>
+    <p>段落4</p>
+    <p title="five">段落5</p>
+
+</body>
+</html>

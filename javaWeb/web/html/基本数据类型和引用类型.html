@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本和引用数据类型</title>
+    <script type="text/javascript">
+        /**
+         * 对于基本数据类型，两个变量的值互不影响
+         * 因为Js中的变量都是保存到栈内存当中，基本数据类型的值直接在栈内存中存储
+         * b = a。是将a变量的值复制了一份给了b，栈内存里相当于有了两个变量、两个值
+         * 所以两者不会互相影响
+         * @type {number}
+         */
+        var a = 1;
+        var b = a;
+        a++;
+        console.log(a);
+        console.log(b);
+
+        /**
+         * 对于对象，引用类型
+         * Js中的变量都是保存到栈内存当中，但对象是保存到堆内存中
+         * var obj = new Object();
+         * obj存在栈内存中，而对象new后会在堆内存中开辟一个内存空间，该空间有个内存地址
+         * obj的值实际就是这个内存地址。所以 obj2 = obj，则两个变量的值指向了同一个内存地址
+         * 所以修改obj的属性值，obj2的对应属性也会变，因为两者指向了同一个堆内存空间
+         *
+         * @type {Object}
+         */
+        var obj = new Object();
+        obj.name = '孙悟空';
+
+        var obj2 = obj;
+        obj.name = '猪八戒';
+
+        /*console.log(obj.name);
+        console.log(obj2.name);*/
+
+        //设置obj2为null
+        obj2 = null;
+        console.log(obj);
+        console.log(obj2);
+
+        /**
+         * 对于基本数据类型，就是比较的值
+         * 对于引用类型，它比较的是内存地址，而不是里面的值
+         * @type {number}
+         */
+        var c = 1;
+        var d = 1;
+        console.log(c == d);
+
+        var obj3 = new Object();
+        var obj4 = new Object();
+        obj3.name = '唐山';
+        obj3.name = '唐山';
+
+        console.log(obj3 == obj4);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

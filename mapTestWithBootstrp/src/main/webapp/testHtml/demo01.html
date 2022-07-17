@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        meta标签的作用
+        meta标签可以设置网页编码，设置网页的关键字,指定网页的描述，做请求的重定向(示例是5s后重定向到百度)
+        搜索引擎在检索页面时，会同时检索页面中的关键字和描述，但这两个值不会影响页面在搜索引擎中的排名
+    -->
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="js,html5,css" />
+    <meta name="description" content="网页描述信息"/>
+    <meta http-equiv="refresh" content="5;url=https://www.baidu.com/"/>
+    <title>测试一些常用标签</title>
+</head>
+<body>
+    <!-- h1一级标题最重要，影响网页在搜索引擎中的排名 -->
+    <h1>一级标题</h1>
+    <h2>一级标题</h2>
+    <h3>一级标题</h3>
+
+    <p>一个段落</p>
+    <p>另一个段落</p>
+
+    <!--
+        html中再多的空格也会被解析为一个空格
+        <br/>换行标签  <hr/>水平线标签
+    -->
+    <p>
+        hello
+        html    java
+        end <br/>
+        html2
+    </p>
+
+    <!--
+        在HTML标签中 < >等特殊字符不能直接使用
+        需要使用特殊符号来表示特殊字符，这些特殊的符号叫转义字符或叫实体
+        语法：&实体名字;
+        eg: &lt;(<)  &gt;(>)  &nbsp;(空格)
+    -->
+    a&lt;b&gt;c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d
+    <br>&copy;版权所有  xxx
+
+    <!--图片-->
+    <!--
+    使用img标签引入一个外部的图片
+    src:图片路径
+    alt:当图片无法加载时,显示该属性对图片描述，搜索引擎可以用该属性来识别图片
+    src路径：
+        相对路径：相对于当前资源的所在位置  ../上级目录
+    -->
+    <br>
+    <img src="../static/css/metroStyle/img/loading.gif" alt="加载动态效果"
+         width="56px" height="56px"/>
+
+</body>
+</html>

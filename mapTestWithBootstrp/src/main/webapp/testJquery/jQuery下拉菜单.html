@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery下拉菜单</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .nav{
+            list-style: none;
+            width: 300px;
+            height: 50px;
+            background: #2ECEE7;
+            margin: 100px auto;
+        }
+        .nav>li{
+            width: 100px;
+            height: 50px;
+            line-height: 50px; /*设置行间距*/
+            text-align: center;
+            float: left;
+        }
+
+        .sub{
+            list-style: none;
+            background: #1c6ca2;
+            display: none;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            /*
+            * 在执行jQuery动画之前，要先执行stop方法，再执行动画效果。防止出现快速触发，导致动画排队
+            * 执行的情况
+            * */
+            //1.1监听一级菜单的移入事件
+            $(".nav>li").mouseenter(function () {
+                //拿到二级菜单
+                var $sub = $(this).children(".sub");
+                //停止所有在指定元素上正在运行的动画
+                $sub.stop();
+                //展开
+                $sub.slideDown(500);
+            });
+            //1.2监听一级菜单的移出事件
+            $(".nav>li").mouseleave(function () {
+                //拿到二级菜单
+                var $sub = $(this).children(".sub");
+                //停止所有在指定元素上正在运行的动画
+                $sub.stop();
+                //收起
+                $sub.slideUp(500);
+            });
+        })
+    </script>
+</head>
+<body>
+<ul class="nav">
+    <li>客户管理
+        <ul class="sub">
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+        </ul>
+    </li>
+    <li>网格地图
+        <ul class="sub">
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+        </ul>
+    </li>
+    <li>闭环营销
+        <ul class="sub">
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+            <li>二级菜单</li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

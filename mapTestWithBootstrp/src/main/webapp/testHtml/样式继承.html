@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>样式继承</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+    <!--
+        后代元素可以继承祖先元素的样式，但不是所有样式都会被子元素继承
+        eg：所有背景相关样式都不会被后代元素继承,边框相关、定位相关的都不会被继承
+        下面的例子看到span背景色也变了，是因为div是块元素独占一行，子元素span虽然
+        不继承div的背景色，但是默认是透明的，所以透出了div的背景色，可查看w3cshool
+        的离线手册查看各元素的继承性
+    -->
+    <div style="font-size: 20px;background-color: greenyellow;">
+        div元素<br>
+        <span>
+            span元素
+        </span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+    这里两个shiro的两个命名空间都可以
+    xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"和
+    xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro"
+-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Shiro的首页</title>
+</head>
+<body>
+    <h2 style="color: #d2346e" th:text="${msg}"></h2>
+    <hr>
+    <div shiro:hasPermission="user:add">
+        <a th:href="@{/shiro/shiroAdd}">add</a>
+    </div>
+    <div shiro:hasPermission="user:update">
+        |<a th:href="@{/shiro/shiroUpdate}">update</a>
+    </div>
+    <!--
+        表示，如果没有被认证才显示登录按钮，登录了登录按钮就没有了
+        下面两种方式都可以。shiro:guest可以直接判断用户是否登录
+    -->
+    <!--<div shiro:notAuthenticated="">
+        <a th:href="@{/shiro/toLogin}">去登陆~</a>
+    </div>-->
+    <div shiro:guest="true">
+        <a th:href="@{/shiro/toLogin}">去登陆~</a>
+    </div>
+    <div shiro:authenticated="">
+        <a th:href="@{/shiro/logout}">去注销~</a>
+    </div>
+</body>
+</html>

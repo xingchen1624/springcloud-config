@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>a的伪类</title>
+    <style type="text/css">
+        /**
+            涉及到a的伪类，一共有4个
+            :link  :visited  :hover  :active
+            这4个伪类顺序最好按上面的顺序，否则一些伪类会被其它的覆盖掉，导致不生效
+            link和visited顺序无所谓，但必须在hover和active前面。hover必须在active前面
+         */
+        a:link{
+            color: red;
+        }
+
+        a:visited{
+            color: blue;
+        }
+
+        /**
+            鼠标移入
+         */
+        a:hover{
+            color: greenyellow;
+        }
+
+        /**
+            正在激活
+         */
+        a:active{
+            color: orangered;
+        }
+
+    </style>
+</head>
+<body>
+    <a href="demo01.html" >链接1</a>
+    <a href="demo0111.html" >链接2</a>
+</body>
+</html>

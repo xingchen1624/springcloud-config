@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date和Math对象</title>
+    <script type="text/javascript">
+        /**
+         * 内建对象：Date 表示js中的时间
+         */
+        var d = new Date();
+        console.log(d);
+
+        /**
+         * 创建一个指定事件的Date对象
+         * 格式：月/日/年 时:分:秒
+         */
+        var d2 = new Date('10/15/2019');
+        console.log(d2);
+        /**
+         * 一些常用的方法
+         * getDate():返回日期是几号  取：日
+         * getDay():返回一个0-6的值，0表示周日，依次类推
+         * getMonth():获取月份 0-11，0表示1月
+         */
+        console.log(d2.getDate());
+        console.log(d2.getDay());
+
+
+        /**
+         * Math和Date之类的不同，它不是一个构造函数，它属于一个工具类
+         * 不用创建对象，封装了数学相关的属性和方法
+         * 部分常用方法：
+         * abs()：取绝对值
+         * ceil():向上取整,只要有小数就向整数位进1
+         * floor():向下取整,只要有小数位就舍去
+         * round():四舍五入
+         * random():生成一个0-1之间的随机数
+         *      生成一个0-x之间的随机数，Math.random()*x
+         *      生成一个x-y之间的随机数，Math.round(Math.random()*(y-x)+x)
+         */
+        console.log(Math.PI);
+        console.log(Math.LOG10E);
+        console.log(Math.ceil(1.12));
+        console.log(Math.floor(1.12));
+        console.log(Math.random());
+        console.log(Math.round(Math.random()*(6-1)+1));
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

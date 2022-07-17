@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet">
+    <link th:href="@{/css/myCss.css}" rel="stylesheet">
+    <title>员工管理 - 员工列表页面</title>
+</head>
+<body>
+<br/>
+<div class="panel panel-primary">
+    <!--插入抽取的公共代码块-->
+    <div th:replace="~{commons/common::head}"></div>
+    <!--插入抽取的公共代码块-->
+    <div th:replace="~{commons/common::sidebar(active='empList.html')}"></div>
+
+    <!--添加员工-->
+    <h3><a class="btn btn-success" th:href="@{/user/addEmp}">添加员工</a></h3>
+    <!--员工列表-->
+    <div th:if="${not #lists.isEmpty(allEmps)}">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">员工列表</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="emp:${allEmps}">
+                        <span th:text="${emp.id}"></span>
+                        <span th:text="${emp.lastName}"></span>
+                        <span th:text="${emp.gender==0?'女':'男'}"></span>
+                        <span th:text="${emp.email}"></span>
+                        <span th:text="${#dates.format(emp.birth,'yyyy-MM-dd HH:mm:ss')}"></span>
+                        <span th:text="${emp.getDepartment().getDepartmentName()}"></span>
+                        <!--<a class="btn btn-warning" th:href="@{/user/editEmp(id=${emp.getId()})}">编辑</a>-->
+                        <a class="btn btn-warning" th:href="@{/user/editEmp/}+${emp.getId()}">编辑restful1</a>
+                        <a class="btn btn-danger" th:href="@{/user/delEmp/}+${emp.getId()}">删除</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel-heading">
+        <div>
+            <img alt="GTVG logo" title="GTVG logo" th:src="@{/icons/轻音.jpg}" />
+        </div>
+    </div>
+    
+</div>
+<script th:src="@{/js/jquery-1.11.3.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:inline="javascript">
+    //    var single = [[${singlePerson}]];
+    //    console.log(single.name+"/"+single.age);
+    $(function(){
+        
+    });
+</script>
+</body>
+</html>

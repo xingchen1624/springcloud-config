@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素层级</title>
+    <style type="text/css">
+        /*
+            如果元素都开启了定位，即层级都提升了，那么页面覆盖情况是根据元素在页面中的位置进行覆盖
+            下面的覆盖上面的元素
+        */
+        .box1{
+            width:200px;
+            height: 200px;
+            background-color: #be2626;
+            position: relative;
+        }
+        .box2{
+            width:200px;
+            height: 200px;
+            background-color: #1eed8e;
+            /*开启绝对定位*/
+            position: absolute;
+            /*设置偏移量*/
+            left: 100px;
+            top:100px;
+            /*
+                通过z-index可以设置元素的层级
+                z-index取值正整数，越大层级越高
+                对于没有开启定位的元素，z-index无效
+            */
+            z-index: 1;
+
+            /*
+                设置元素的透明属性 opacity
+                取值 0 - 1之间 0：完全透明 1：完全不透明
+                兼容性问题：
+                    ie8及以下的浏览器不支持opacity属性，需要使用filter属性替代
+                    写法如下：
+                        filter: alpha(opacity=50);
+                        0：完全透明  100：完全不透明
+
+            */
+            opacity: 0.3;
+            filter: alpha(opacity=50);
+        }
+        .box3{
+            width:200px;
+            height: 200px;
+            background-color: #28a4c9;
+            position: relative;
+        }
+
+        /*
+            注意：父元素的层级再高，也不会盖住子元素
+        */
+        .box4{
+            width:200px;
+            height: 200px;
+            background-color: #1c6ca2;
+            position: relative;
+            z-index: 1;
+        }
+        .box5{
+            width:100px;
+            height: 100px;
+            background-color: #737373;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4">
+        <div class="box5"></div>
+    </div>
+</body>
+</html>

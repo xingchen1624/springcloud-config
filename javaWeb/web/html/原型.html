@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型</title>
+    <script type="text/javascript">
+        /**
+         * 原型
+         * 我们创建的每一个函数，解析器都会向函数中添加一个prototype属性
+         * 这个属性对应一个对象，这个对象就是我们所谓的原型对象
+         * 如果函数作为普通函数调用，这个prototype没有作用、
+         * 如果作为构造函数调用，它所创建的对象都有一个隐含的属性，指向该构造函数的原型对象
+         * 我们可以通过 __proto__ 来访问该属性.注意一边是两个下划线
+         *
+         * 原型对象相当于一个公共区域，所有同一个类的实例都可以访问这个原型对象
+         * 我们可以将对象共有的内容添加到原型对象中
+         *
+         * 当我们访问一个对象的属性或方法时，首先在对象中找，如果有则直接使用
+         * 如果没有则去原型对象中找.
+         *
+         * 以后创建构造函数的时候，可以将公共的属性和方法统一添加到原型中
+         * 这样既可以不为每一个对象添加，也不用担心污染全局作用域，安全性也有保证
+         */
+        function Person() {
+        }
+
+        //构造函数的方式创建对象
+        var p1 = new Person();
+        p1.name = 'p1的name';
+
+        console.log(p1.__proto__);
+        console.log(Person.prototype);
+
+        //向Person的原型中添加属性name
+        Person.prototype.name = '原型对象';
+        console.log(p1.name);
+
+        //向Person的原型中添加方法
+        Person.prototype.sayName = function () {
+          alert('hi');
+        };
+        p1.sayName();
+
+
+        //创建一个构造函数MyClass
+        function MyClass() {
+
+        }
+        //向Person的原型中添加属性name
+        MyClass.prototype.name = '原型中的name';
+
+        var mc = new MyClass();
+        //这里返回true，使用in判断一个属性是否在对象中，
+        // 在对象中找不到也会去原型中找，所以返回true
+        console.log('name' in mc);
+
+        //如果只想判断对象中是否包含某个属性，可以使用hasOwnProperty方法
+        console.log(mc.hasOwnProperty('name'));
+
+        /**
+         * 原型对象也是一个对象，所以它也有一个原型
+         * 当我们使用一个对象的属性或方法时，会在自身中寻找
+         * 自身中如果有则直接使用，如果没有则去原型对象中寻找，如果原型对象中有则使用，
+         * 如果没有，则去原型的原型对象中找（套娃？？？？？）。直到找到Object的原型，
+         * Object的原型没有原型（套娃在这里终于结束了）.如果在Object中依然没有找到，
+         * 则返回undefined
+         */
+        console.log(mc.__proto__.hasOwnProperty('hasOwnProperty'));
+        console.log(mc.__proto__.__proto__.hasOwnProperty('hasOwnProperty'));
+        console.log(mc.__proto__);
+        console.log(mc.__proto__.__proto__);
+        console.log(mc.__proto__.__proto__.__proto__);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影排行榜</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .box{
+            width: 300px;
+            height: 450px;
+            margin: 50px auto;
+            border: 1px solid #000;
+        }
+
+        .box>h1{
+            font-size:20px;
+            line-height: 35px;
+            color: deeppink;
+            padding-left: 10px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        ul>li{
+            list-style: none;
+            padding: 5px 10px;
+            border: 1px dashed #ccc;
+        }
+
+        ul>li:nth-child(-n+3) span{
+            background: deeppink;
+        }
+
+        ul>li>span{
+            display:inline-block;
+            width: 20px;
+            height: 20px;
+            background: #ccc;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 10px;
+        }
+
+        /*
+            清除父元素的浮动，防止高度坍塌
+        */
+        .content{
+            overflow: hidden;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .content>img{
+            width: 80px;
+            height: 120px;
+            float: left;
+        }
+
+        .content>p{
+            width: 180px;
+            height: 120px;
+            float: right;
+            font-size: 12px;
+            line-height: 20px;
+        }
+
+        .current .content{
+            display: block;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            //1.监听li的移入事件
+            /*$("li").mouseenter(function (event) {
+                $(this).addClass("current");
+            })*/
+
+            //2.监听li的移出事件
+            /*$("li").mouseleave(function (event) {
+                $(this).removeClass("current");
+            })*/
+
+            /*
+            * 方式二使用hover
+            * */
+            $("li").hover(function () {
+                $(this).addClass("current");
+            },function () {
+                $(this).removeClass("current");
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="box">
+        <h1>电影排行榜</h1>
+        <ul>
+            <li><span>1</span>电影名称
+                <div class="content">
+                    <img src="../static/icons/动漫图片-猫耳娘.png" alt="">
+                    <p>
+                        简介：啥的了附近爱神的箭风扇电机商量的复健科
+                        大嫁风尚吉林省附近的副驾驶的浪费水电费空间酸辣粉
+                        氨基酸的两个嘉陵江少打了发件方市司法局爱打架
+                        阿斯顿福建垃圾的费拉飞机啊
+                    </p>
+                </div>
+            </li>
+            <li><span>2</span>电影名称
+                <div class="content">
+                    <img src="../static/icons/动漫图片-猫耳娘.png" alt="">
+                    <p>
+                        简介：啥的了附近爱神的箭风扇电机商量的复健科
+                        大嫁风尚吉林省附近的副驾驶的浪费水电费空间酸辣粉
+                        氨基酸的两个嘉陵江少打了发件方市司法局爱打架
+                        阿斯顿福建垃圾的费拉飞机啊
+                    </p>
+                </div>
+            </li>
+            <li><span>3</span>电影名称
+                <div class="content">
+                    <img src="../static/icons/动漫图片-猫耳娘.png" alt="">
+                    <p>
+                        简介：啥的了附近爱神的箭风扇电机商量的复健科
+                        大嫁风尚吉林省附近的副驾驶的浪费水电费空间酸辣粉
+                        氨基酸的两个嘉陵江少打了发件方市司法局爱打架
+                        阿斯顿福建垃圾的费拉飞机啊
+                    </p>
+                </div>
+            </li>
+            <li><span>4</span>电影名称
+                <div class="content">
+                    <img src="../static/icons/动漫图片-猫耳娘.png" alt="">
+                    <p>
+                        简介：啥的了附近爱神的箭风扇电机商量的复健科
+                        大嫁风尚吉林省附近的副驾驶的浪费水电费空间酸辣粉
+                        氨基酸的两个嘉陵江少打了发件方市司法局爱打架
+                        阿斯顿福建垃圾的费拉飞机啊
+                    </p>
+                </div>
+            </li>
+            <li><span>5</span>电影名称
+                <div class="content">
+                    <img src="../static/icons/动漫图片-猫耳娘.png" alt="">
+                    <p>
+                        简介：啥的了附近爱神的箭风扇电机商量的复健科
+                        大嫁风尚吉林省附近的副驾驶的浪费水电费空间酸辣粉
+                        氨基酸的两个嘉陵江少打了发件方市司法局爱打架
+                        阿斯顿福建垃圾的费拉飞机啊
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

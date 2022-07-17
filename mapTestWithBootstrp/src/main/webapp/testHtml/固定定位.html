@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>固定定位</title>
+    <style type="text/css">
+        /*
+            固定定位也是一种绝对对位，大部分特点都和绝对定位一样，
+            不同点：
+                固定定位永远针对浏览器窗口定位，不针对祖先元素
+                固定定位会固定在窗口的固定位置，不会随滚动条移动
+                ie6不支持固定定位
+        */
+        .box1{
+            width:200px;
+            height: 200px;
+            background-color: #be2626;
+        }
+        .box2{
+            width:200px;
+            height: 200px;
+            background-color: #1eed8e;
+            position: fixed;
+            left: 0px;
+        }
+        .box3{
+            width:200px;
+            height: 200px;
+            background-color: #28a4c9;
+        }
+
+    </style>
+</head>
+<body style="height: 2000px">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+</body>
+</html>

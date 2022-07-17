@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet">
+    <link th:href="@{/css/myCss.css}" rel="stylesheet">
+    <title>测试thymeleaf模板</title>
+</head>
+<body>
+<br/>
+<div class="panel panel-primary">
+    <!--插入抽取的公共代码块-->
+    <div th:replace="~{commons/common::head(active='login.html')}"></div>
+    <!--插入抽取的公共代码块-->
+    <div th:replace="~{commons/common::sidebar}"></div>
+    
+    <div class="panel-heading">
+        <h3 class="panel-title">我的坐标</h3>
+        <h5>xmlns:th="http://www.thymeleaf.org"命名空间，将镜头转化为动态的视图，
+            需要进行动态处理的元素使用“th:”前缀；两个link引入bootstrap框架，
+            通过@{}引入web静态资源（括号里面是资源路径）访问model中的数据通过${}访问
+        </h5>
+        <div>
+            <img alt="GTVG logo" title="GTVG logo" th:src="@{icons/轻音.jpg}" />
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <span>116.31064,40.062658</span>
+    </div>
+    <br/>
+    
+    <div th:if="${not #lists.isEmpty(persons)}">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">人员列表</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="item : ${persons}">
+                        <span th:text="${item.id}"></span>
+                        <span th:text="${item.name}"></span>
+                        <span th:text="${item.location}"></span>
+                        <span th:text="${item.age}"></span>
+                        <span th:text="${item.birthday}"></span>
+                        <button class="btn">删除</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/jquery-1.11.3.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:inline="javascript">
+    //    var single = [[${singlePerson}]];
+    //    console.log(single.name+"/"+single.age);
+    $(function(){
+        $(".btn").click(function(){
+            alert("删除功能完善中...");
+        });
+    });
+</script>
+</body>
+</html>

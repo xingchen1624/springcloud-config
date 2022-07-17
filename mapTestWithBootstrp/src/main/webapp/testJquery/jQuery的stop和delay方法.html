@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery的stop和delay方法</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .one{
+            width: 100px;
+            height: 100px;
+            background: #2ECEE7;
+        }
+
+        .two{
+            width: 500px;
+            height: 10px;
+            background: #B75445;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            /*
+            * 在jQuery的动画的一个大括号中的动画效果会同时执行，如下面的宽和高
+            * 如果要分开执行，则不能放在同一个大括号中
+            * */
+            $("button").eq(0).click(function () {
+                /*$(".one").animate({
+                    width:500,
+                    height:500
+                }, 1000);*/
+
+                /*
+                * delay用于指定在延迟指定事件后继续执行
+                * */
+                /*$(".one").animate({
+                    width:500
+                }, 1000).delay(2000).animate({
+                    height:500
+                },1000);*/
+
+                $(".one").animate({
+                    width:500,
+                }, 1000);
+                $(".one").animate({
+                    height:500,
+                }, 1000);
+                $(".one").animate({
+                    width:100,
+                }, 1000);
+                $(".one").animate({
+                    height:100,
+                }, 1000);
+            });
+
+            /*
+            * 停止动画
+            * */
+            $("button").eq(1).click(function () {
+                /*
+                *   立即停止当前动画，继续执行后续动画
+                * */
+                // $("div").stop();
+                // $("div").stop(false);
+                // $("div").stop(false,false);
+
+                /*
+                * 立即停止执行当前和后续的所有动画
+                * */
+                $("div").stop(true);
+                $("div").stop(true,false);
+
+                /*
+                * 立即完成当前动画，继续执行后续动画
+                * */
+                $("div").stop(false,true);
+
+                /*
+                *立即完成当前动画，停止后续动画
+                * */
+                $("div").stop(true,true);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>开始动画</button>
+    <button>停止动画</button>
+    <div class="one"></div>
+    <div class="two"></div>
+</body>
+</html>

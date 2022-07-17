@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS中的数据类型</title>
+    <script type="text/javascript">
+        /**
+         * 数据类型指的是字面量的类型
+         * js六种数据类型
+         *  String 字符串
+         *  Number 数值
+         *  Boolean 布尔值
+         *  Null 空值
+         *  Undefined 未定义
+         *  Object 对象
+         *
+         *  其中前五种属于基本数据类型，Object属于引用数据类型
+         */
+
+        /**
+         * 1.字符串,需要使用引号引起来，单双引号都可以，但不要混着用
+         * 同类型引号不能嵌套，但是单、双引号可以彼此嵌套
+         * 在字符串中可以使用‘\’作为转义字符
+         * 常用 \n表示 换行  \t制表符  \\表示 \
+         */
+        var str = "hello \"Js\" \n by chen \\";
+        console.log(str);
+
+        /**
+         * 2.在JS中所有的数值都是Number类型，包括整数和浮点数
+         * js中能表示的最大值 Number.MAX_VALUE，如果超过这个值，则显示 Infinity（正无穷）
+         * 并且 Infinity的类型还是Number。
+         * NaN:是一个特殊的数字，表示not a number，但是其类型仍是Number
+         * Number.MIN_VALUE：表示0以上的最小值
+         * 在js中，整数运算基本能保证准确性,但是进行浮点数运算时，可能得到一个不精确的结果
+         * 二进制下所有语言的通病，js一般采用四舍五入处理，但最好不用来计算钱
+         *
+         * typeof检查变量类型  语法：typeof+变量
+         *
+         */
+        var a = 1;
+        var b = "1";
+        var c = "a" * "b";
+        console.log(typeof a);
+        console.log(typeof b);
+        console.log(Number.MAX_VALUE);
+        console.log(c);
+        console.log(Number.MIN_VALUE);
+
+        var d = 0.1 + 0.2;
+        console.log(d);
+
+        /**
+         * 3.Boolean:布尔值  布尔值只有两个 true,false,主要用来进行逻辑判断
+         */
+        var bool = true;
+
+        /**
+         * 4.Null+Undefined
+         * null:表示一个空对象，  typeof null:返回一个Object
+         * Undefined:声明一个变量，但不赋值，表示未定义. typeof undefined:undefined
+         */
+        var m = null;
+        var n;
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

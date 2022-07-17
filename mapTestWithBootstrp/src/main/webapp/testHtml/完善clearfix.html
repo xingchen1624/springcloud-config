@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>完善clearfix</title>
+    <style type="text/css">
+        /*
+            问题回顾：当子元素和父元素外边距相邻会发生重叠，子元素的外边距会传递给父元素，导致修改子元素外边距
+            父元素也跟着变化
+            为了避免相邻，可以隔断父子元素外边距相邻,加一个空的table即可隔开父子元素，并且不影响页面可见框大小
+            但同样会增加必要的页面元素  空table不是页面结构需要的
+
+        */
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: #18a665;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: #be2f64;
+            margin-top: 100px;
+        }
+
+        /*
+            解决父子元素外边距重叠，content: ''元素内容为空，display:table可以将一个元素设置为表格展示
+            代替<table></table>
+        */
+        /*.box1:before{
+            content: '';
+            display: table;
+        }*/
+
+        /*
+            解决高度塌陷问题方式
+        */
+        /*.clearfix:after{
+            !*添加内容*!
+            content: '';
+            !*转换为块元素*!
+            display: block;
+            !*清除两侧浮动*!
+            clear: both;
+        }*/
+
+        .box3{
+            border:1px #be2626 solid;
+        }
+
+        .box4{
+            width:100px;
+            height: 100px;
+            background-color: #1eed8e;
+            float: left;
+        }
+
+
+        /*
+            发现上面两个问题解决方案有类似的地方，如何同时解决这两个问题，最终版如下
+            只能强行记住，不方便理解
+        */
+        .clearfix:before,.clearfix:after{
+            /*添加内容*/
+            content: '';
+            /*转换为table元素*/
+            display: table;
+            /*清除两侧浮动*/
+            clear: both;
+        }
+        /*兼容ie*/
+        .clearfix{
+            zoom: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box1 clearfix">
+        <div class="box2"></div>
+    </div>
+
+    <div class="box3 clearfix">
+        <div class="box4"></div>
+    </div>
+</body>
+</html>

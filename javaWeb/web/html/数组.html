@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组</title>
+    <script type="text/javascript">
+        /**
+         * 内建对象
+         * 宿主对象
+         * 自建对象
+         *
+         * 数组：Array
+         *  - 数组也是一个对象
+         *  - 普通对象使用字符串作为属性来存储值，数组使用数字作为索引来操作数组中的元素
+         *    索引从0开始
+         *  -
+         */
+
+        //创建数组
+        var array = new Array();
+        //数组类型是object
+        console.log(typeof array);
+        //向数组中添加元素
+        array[0] = 10;
+        array[1] = 20;
+        array[2] = 30;
+        //读取数组元素
+        console.log(array);
+        /**
+         * 对于连续的数组，length属性可以获取数组的长度，前提数组必须顺序添加，
+         * 非连续数组返回最大索引+1
+         * 如果修改数组的length，如果大于原长度会用空补足。如果小于会将数组截断到指定长度
+         */
+        console.log(array.length);
+        array.length = 5;
+        console.log(array);
+        array.length = 2;
+        console.log(array);
+
+        /**
+         * 向数组的最后一位添加元素
+         */
+        array[array.length] = 50;
+        console.log(array);
+
+        /**
+         * 使用字面量创建数组 语法 []
+         * 创建数组的同时可以直接指定数组元素
+         * 数组中的元素可以是任意的类型
+         */
+        var arr2 = [];
+        var arr3 = [1,2,3];
+        console.log(arr3);
+
+        /**
+         * 使用构造函数创建数组时，也可以直接添加元素，将元素作为构造函数的参数传进去即可
+         *  - 但是如果只传一个参数的时候，就是创建一个长度为多少的数组，而不是作为元素
+         */
+        var arr4 = new Array(1, 2, 3);
+        console.log(arr4);
+
+        var arr5 = new Array(5);
+        console.log(arr5);
+
+        /**
+         * push()：向数组最后位置添加一个元素
+         * pop(): 删除数组最后一个元素，并将删除的元素作为返回值返回
+         * unshift:向数组开头添加一个或多个元素，并返回数组的新长度
+         * shift:可以删除数组的第一个元素，并将删除的元素作为返回值返回
+         */
+        var arr6 = [1,2];
+        arr6.unshift(3, 4, 5);
+        console.log(arr6);
+
+        /**
+         * 数组的遍历 推荐还是用普通for循环
+         * ①普通for循环
+         * ②forEach()：该方法至少要ie9及以上浏览器才有效
+         */
+        var arr7 = ['唐僧','孙悟空','猪八戒','沙僧','白龙马'];
+
+        /**
+         * forEach需要一个回调函数作为参数,浏览器会将数组的元素作为实参传到回调函数中
+         * 浏览器会在回调函数中传递三个参数
+         *  -第一个是元素
+         *  -第二个是索引
+         *  -第三个是正在遍历的数组本身
+         */
+        arr7.forEach(function (value,index,array) {
+            console.log(value);
+            console.log(index);
+            console.log(array);
+        });
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

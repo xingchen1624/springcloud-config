@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS的垃圾回收</title>
+    <script type="text/javascript">
+        /**
+         * 垃圾回收
+         * 随着程序运行持续，会产生垃圾
+         * 当一个对象没有任何的变量或属性对其进行引用，此时我们无法操作该对象，
+         * 这种对象就是一个垃圾对象，但是其仍然占有内存空间，所以需要清理垃圾对象
+         * js中有自动的垃圾回收机制，会自动销毁垃圾对象，无需我们手动控制，我们也无法控制
+         * 我们只需要将不用的对象设置为null，则浏览器会自动回收
+         */
+        var obj = new Object();
+        //对对象进行各种操作...
+        //如果没有obj = null，浏览器不会自动回收，因为浏览器无法判断该对象是否还在使用
+        obj = null;
+    </script>
+</head>
+<body>
+
+</body>
+</html>

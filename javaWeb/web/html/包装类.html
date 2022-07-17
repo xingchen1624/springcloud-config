@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>包装类</title>
+    <script type="text/javascript">
+        /**
+         * 数据类型：
+         * 基本数据类型：String,Number,Boolean,Null,Undefined
+         * 引用数据类型:Object
+         *
+         * js提供了三个包装类，可以将基本数据类型转为对象
+         * String():
+         *  基本数据类型 - String对象
+         * Number():
+         *  基本数据类型 - Number对象
+         * Boolean():
+         *  基本数据类型 - Boolean对象
+         *
+         *  注意：在实际开发中不会使用基本数据类型对象，因为在进行比较的时候，
+         *  可能会出现不可预知的结果（因为对象 == 比较的是对象的引用地址）
+         */
+
+        //创建一个Number类型的对象
+        var num = new Number(3);
+        var str = new String('hello');
+        var bool = new Boolean(true);
+
+        console.log(typeof num);
+        console.log(typeof str);
+        console.log(typeof bool);
+
+        /**
+         * 这里会执行，因为b被转为了一个对象，对象在进行条件判断的时候
+         * 会自动转为布尔值，而对象转布尔值都是true
+         *
+         *  @type {Boolean}
+         */
+        var b = new Boolean(false);
+        if (b) {
+            alert('我执行了');
+        }
+
+        /**
+         * 既然实际开发中不使用包装类来转换，为什么还要提供这样的包装类
+         * 是为了浏览器内部自己使用，将基本数据类型临时转换为对象，
+         * 调用对象的属性和方法，来实现基本数据类型调用属性和方法
+         */
+        var a = 1;
+        a = a.toString();
+        var s = 'hi';
+        s.charAt(1);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

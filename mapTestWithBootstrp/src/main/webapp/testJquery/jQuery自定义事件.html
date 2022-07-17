@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery自定义事件</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            /*
+            * 自定义事件的两个条件
+            * 1.只能使用on来绑定自定义事件
+            * 2.必须使用trigger或者triggerHandler来触发自定义事件
+            * */
+            $(".myEvent").on("myClick",function (event) {
+                alert("自定义事件myClick");
+            });
+
+            // $(".myEvent").trigger("myClick");
+            $(".myEvent").triggerHandler("myClick");
+        });
+    </script>
+
+</head>
+<body>
+    <div class="myEvent">我的div</div>
+</body>
+</html>

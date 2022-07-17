@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS起步</title>
+    <script type="text/javascript">
+        document.write("向body标签中输入内容");
+        console.log("向控制台输出,js按顺序执行");
+    </script>
+
+    <!--引入外部js文件-->
+    <!--
+        script标签一旦用来引入外部js文件，则不能在该标签内部添加js代码了，即使添加了、
+        浏览器也会自动忽略
+    -->
+    <script type="text/javascript" src="../js/script.js"></script>
+</head>
+<body>
+    <!--可以将js代码编写到onclick的属性中-->
+    <button onclick="alert('点了');">点击</button>
+    <!--可以将js代码写到href属性中，点击超链接的时候，会执行js代码-->
+    <a href="javascript:alert('点a了');">超链接1</a>
+    <a href="javascript:;">超链接2</a>
+</body>
+</html>

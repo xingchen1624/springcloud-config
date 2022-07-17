@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>测试前台传对象数组，后台接收处理</title>
+    <script src="../static/js/jquery-1.11.3.js" th:src="@{js/jquery-1.11.3.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            var data = [{'userId':'1001','userName':'张三'},{'userId':'1002','userName':'李四'}];
+           $.ajax({
+               dataType : 'json',
+               type : 'POST',
+               data : {'data':JSON.stringify(data)},
+               url : '/user/parseUser',
+               //contentType : 'application/json',
+               success : function (data) {
+                   console.log(data);
+               },
+               error : function (XMLHttpRequest, textStatus, errorThrown) {
+                   console.log(XMLHttpRequest.toString());
+               }
+           });
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

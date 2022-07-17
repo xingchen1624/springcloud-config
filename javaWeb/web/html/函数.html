@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+    <script type="text/javascript">
+        /**
+         * 函数：也是一个对象,一个特殊的对象，具有普通对象的所有功能
+         * 封装了一些代码，来实现一个特定的功能
+         * 在需要的时候进行调用
+         */
+
+        /**
+         * 1.创建一个函数对象(使用构造方法的方式)
+         * 可以将要封装的代码以字符串的形式传给构造函数
+         * 函数构造好后不会立即执行，要在调用的时候才会执行
+         * 调用方法： 函数对象()
+         */
+        var func = new Function("console.log('new a function object')");
+        func.hello = "func";
+        func();
+        console.log(func.hello);
+
+        /**
+         * 2.使用函数声明来创建一个函数，形参可有可无
+         *  语法：
+         *      function 函数名(形参1,形参2,...形参n){
+         *          语句
+         *      }
+         */
+        function showMsg(msg) {
+            console.log(msg);
+        }
+        /**
+         * 调用函数时，解析器不会检查实参的数量
+         * 多余的实参不会被赋值给形参，如果实参少于形参，多余的形参被赋值为undefined
+        */
+        showMsg('this is my second function!');
+        showMsg('this is my second function!',2);
+
+        /**
+         * 3.使用函数表达式来创建函数
+         * var func2 = function (形参1,形参2,...形参n){
+         *     语句
+         * }
+         */
+        var func2 = function () {
+            console.log('函数表达式的方式');
+        };
+
+        func2();
+
+        /**
+         * 函数的返回值
+         * 使用return返回执行结果,return 后面的语句不会执行。
+         * 如果return后面没有任何值或不写return，都返回undefined
+         */
+        function sum(a, b, c) {
+            var d = a + b + c;
+            return d;
+            // alert(a + b + c);
+        }
+
+        var result = sum(1, 2, 3);
+        // alert(result);
+
+        /**
+         * 判断一个数字是否是偶数,实参可以是任意的类型
+         */
+        function isOs(num) {
+            return num % 2 == 0;
+        }
+
+        showMsg(isOs(2));
+        //匿名函数作为实参
+        showMsg(function(){
+            return 'fuck';
+        });
+
+
+        /**
+         * 立即执行函数
+         * 函数定义完立马执行，一般只执行一次，可以用来初始化
+         */
+        (function () {
+            alert('立即执行函数');
+        })();
+
+        (function (a,b) {
+            alert('立即执行函数'+(a+b));
+        })(1,2);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

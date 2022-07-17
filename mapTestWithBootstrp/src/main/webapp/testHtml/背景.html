@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>背景</title>
+    <style type="text/css">
+        .box1{
+            width: 600px;
+            height: 847px;
+            margin: 0 auto;
+            background-color: #737373;
+            /*
+                设置背景图片
+                如果背景图片大于元素大小，默认从图片左上角开始显示
+                元素宽高最好和图片一样大
+                如果背景图片小于元素大小，则图片会平铺填满元素空间，重复出现
+                可以同时设置背景颜色和背景图片，但背景颜色会在背景图片后面显示，作为底色显示
+                一般设置背景图片时，都会制定一个背景颜色，以防图片没显示时，可以先看到背景颜色
+                语法：
+                    background-image: url("图片相对路径")
+                相对路径：写在哪个文件里，就相对于哪个文件
+            */
+            background-image: url("../static/icons/动漫图片-猫耳娘.png");
+
+            /*
+                用来设置背景图片的重复方式
+                    repeat 默认。背景图像将在垂直方向和水平方向重复。
+                    repeat-x 背景图像将在水平方向重复。
+                    repeat-y 背景图像将在垂直方向重复。
+                    no-repeat 背景图像将仅显示一次。
+                    inherit 规定应该从父元素继承 background-repeat 属性的设置
+
+            */
+            background-repeat: no-repeat;
+        }
+
+        .box2{
+            width: 1000px;
+            height: 1000px;
+            background-color: #18a665;
+            background-image: url("../static/icons/两个少女.jpg");
+
+            /*设置图片不重复*/
+            background-repeat: no-repeat;
+            /*
+                设置图片位置
+                background-position可以调整背景图片的位置.水平方向和垂直方向各取一个值
+                1.九宫格位置
+                    top left
+                    top center
+                    top right
+                    center left
+                    center center
+                    center right
+                    bottom left
+                    bottom center
+                    bottom right
+                 如果您仅规定了一个关键词，那么第二个值将是"center"。
+                2.如果想设置更灵活，可以使用下面的方式设置偏移量,水平方向如果偏移量是正值，则图片向右偏移
+                如果是负值，则向左偏移。垂直方向，正值向下，负值向上
+                    默认值：0% 0%。
+                    x% y% 第一个值是水平位置，第二个值是垂直位置。
+                        左上角是 0% 0%。右下角是 100% 100%。
+                        如果您仅规定了一个值，另一个值将是 50%。
+                    xpos ypos 第一个值是水平位置，第二个值是垂直位置。
+                        左上角是 0 0。单位是像素 (0px 0px) 或任何其他的 CSS 单位。
+                        如果您仅规定了一个值，另一个值将是50%。
+                        您可以混合使用 % 和 position 值
+
+            */
+            background-position: center center;
+            /*background-position:100px 100px*/
+        }
+
+        body{
+            /*设置图片不重复*/
+            /*background-repeat: no-repeat;*/
+            /*background-image: url("../static/icons/两个少女.jpg");*/
+
+            /*
+                background-attachment设置背景图片是否随页面一起滚动
+                    scroll：默认值。背景图像会随着页面其余部分的滚动而移动。
+                    fixed：当页面的其余部分滚动时，背景图像不会移动。 背景图片的定位相对于浏览器窗口
+
+                    inherit：规定应该从父元素继承 background-attachment 属性的设置。
+
+            */
+            /*background-attachment: fixed;*/
+
+            /*
+                background属性可以同时设置背景相关的所有样式，简写方式，无需配置多个样式
+            */
+            background: #000 fixed no-repeat url("../static/icons/两个少女.jpg") center center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

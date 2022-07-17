@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ztree</title>
+    <link rel="stylesheet" href="../static/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../static/js/ztree/jquery.ztree.all.min.js"></script>
+
+</head>
+<body>
+    <div>
+        <ul id="treeContainer" class="ztree"></ul>
+    </div>
+</body>
+<script type="text/javascript">
+    //================js脚本
+    var zNodes = [];
+    $(function(){
+        loadTree();     //初始化树
+        getTreeData();  //后台加载数据
+    });
+    function loadTree(){
+        $.fn.zTree.init($('#treeContainer'),{
+            data:{
+                simpleData:{
+                    enable:true
+                }
+            },
+            view:{
+                nameIsHTML:true,
+                showLine:true,
+                dblClick:false
+            },
+            callback:{
+                onClick : nodeEvents   //点击节点执行的方法
+            }
+        },zNodes);
+    }
+    function getTreeData(){
+        $.ajax({
+            type:"post",
+            url:"",
+            async:true,
+            data:{},
+            dataType:"TEXT",
+            success:function(data)
+            {
+                var arr = data.split('\1');
+                zNodes.push({
+                    id:arr[0],  //本身id
+                    pId:arr[1], //父级id
+                    name:'',    //显示的名称
+                    data:'',   //这个data是传到下面nodeEvent()里面的
+                    open:true   //默认节点打开
+                });
+            }
+
+        });
+    }
+
+    function nodeEvents(e,treeId,treeNode){
+        var data = treeNode.data;
+
+        var zTree = $.fn.zTree.getZTreeObj('treeContainer');
+        zTree.expandNode(treeNode,true);
+    }
+</script>
+</html>

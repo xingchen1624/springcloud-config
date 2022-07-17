@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局作用域</title>
+    <script type="text/javascript">
+        /**
+         * 作用域指一个变量的作用范围
+         * 1.全局作用域
+         *  - 直接定义在script标签中的变量，都在全局作用域
+         *  - 全局作用域在页面打开时创建，关闭时销毁
+         *  - 在全局作用域中有个全局对象window，代表浏览器的一个窗口，由浏览器创建，可以直接使用
+         *  - 在全局作用域中创建的变量都会作为window对象的属性保存
+         *  - 在全局作用域中创建的函数都会作为window对象的方法保存
+         *  - 全局作用域中的变量都是全局变量，在页面的任意位置都可以访问
+         * 2.函数作用域
+         *  调用函数时创建函数作用域，函数执行完毕后，函数作用域销毁
+         *  每次调用函数都会创建一个新的函数作用域，他们之间是相互独立的
+         *  在函数作用域中可以访问全局变量,但在全局作用域中无法访问函数作用域中的变量
+         *  当在函数作用域中操作一个变量时，先在自身作用域中寻找，找不到向上一级作用域寻找
+         */
+        var a = 10;
+        console.log(window.a);
+
+        function func() {
+            console.log('method exec');
+        }
+        window.func();
+
+        window.alert('函数即是window对象的方法');
+
+        //函数
+        function func1(){
+            var a = '我是函数中的a';
+            var b = 20;
+            console.log(a);
+
+            function func2(){
+                console.log(a);
+                console.log(window.a);
+            }
+            func2();
+        }
+
+        func1();
+
+        /**
+         * 在函数作用域中也有声明提前的概念
+         *  使用var声明的变量，会在函数所有代码执行前声明，但不赋值，可以参考‘变量的声明提前’
+         *  函数也是一样
+         *  函数中的变量不用var声明的时候，相当于全局变量
+         */
+        function func3(){
+            console.log(a);
+            var a = 100;
+            d = 10000;
+
+            func4();
+            function func4(){
+
+            }
+        }
+
+        func3();
+
+        console.log('d = ' + d);
+
+        /**
+         * 定义形参相当于在函数作用域里声明了一个变量
+         * @param e
+         */
+        function func5(e){
+            alert(e);
+        }
+
+        func5(1);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

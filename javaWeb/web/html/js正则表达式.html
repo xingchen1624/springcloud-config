@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js正则表达式</title>
+    <script type="text/javascript">
+        /**
+         * 正则表达式：
+         - 用于定义一些字符串的规则，用来判断字符串是否符合某个规则
+         *
+         */
+
+        /**
+         * 创建正则表达式对象
+         * 语法：var reg = new RegExp('正则表达式','匹配模式');
+         * 使用typeof检查类型，返回object，正则也是一个对象，并且区分大小写
+         * 匹配模式： i:忽略大小写  g:全局匹配模式
+         * 方法：
+         * test():用来检查一个字符串是否符合正则表达式
+         */
+        //检查一个字符串中是否包含 'a'
+        var reg1 = new RegExp('a');
+        console.log(reg1);
+        var str = "a";
+        str = 'bca';
+        var result = reg1.test(str);
+
+        str = 'bcA';
+        var reg2 = new RegExp('a','i');
+        var str2 = "sdA";
+        var result2 = reg2.test(str2);
+
+        console.log('result='+result);
+        console.log('result2='+result2);
+
+        /**
+         * 使用字面量创建正则表达式,更方便灵活
+         * 语法：var reg = /正则表达式/匹配模式
+         */
+        var reg3 = /a/i;
+        console.log(reg3.test("sdfa"));
+
+        /**
+         * 创建一个正则表达式判断一个字符串中是否有ab
+         * 使用|或者[]表示或者关系
+         */
+        var reg4 = /a|b/;
+        //reg4 = /[ab]/;
+        console.log(reg4.test('ab'));
+        console.log(reg4.test('afds'));
+
+        /**
+         * 创建一个正则表达式判断一个字符串中是否包含字母
+         * 使用 - 表示从一个字符到另一个，中括号表示或者，意思只要包含 a到z中的任意一个即可
+         * [a-z]:任意小写字母
+         * [A-Z]:任意大写字母
+         * [A-z]:任意字母
+         * [0-9]:任意的数字
+         */
+        var reg5 = /[A-z]/;
+        console.log(reg5.test('213'));
+        console.log(reg5.test('a234'));
+        console.log(reg5.test('2D4'));
+
+        /**
+         * 检查一个字符串中是否包含 abc或者 adc或者aec
+         */
+        var reg6 = /a[bde]c/;
+        console.log(reg6.test('adc'));
+
+        /**
+         * 找出了ab以外，包含其它字符的内容
+         * @type {RegExp}
+         */
+        var reg7 = /[^ab]/;
+        console.log(reg7.test('adb'));
+        console.log(reg7.test('a'));
+        console.log(reg7.test('ab'));
+
+        /**
+         * 正则表达式的量词
+         *  通过量词设置一个内容出现的次数,量词只对自己前面的一个内容起效，并不是前面的所有内容
+         * 语法：
+         *  {n}：连续出现n次
+         *  {m,n}:连续出现m到n次
+         *  {m,}:连续出现m次以上
+         *  + ：表示至少出现1个,相当于{1,}
+         *  * : 表示0个或多个,相当于{0,}
+         *  ? : 表示0个或1个，相当于{0,1}
+         */
+        var reg8 = /a{3}/;
+        reg8 = /(ab){3}/;
+        reg8 = /ab{3}c/;
+        reg8 = /ab+c/;
+        reg8 = /ab*c/;
+        reg8 = /ab?c/;
+        console.log(reg8.test('addaaaghs'));
+        console.log(reg8.test('abababsf'));
+        console.log(reg8.test('abc'));
+
+        /**
+         * 检查一个字符串以a开头
+         * ^：表示开头的内容，但是当 ^在[]里，则表示除了什么，可以参考上面的例子
+         * $:表示结尾的内容
+         *
+         * 如果在正则表达式中同时使用 ^和$，则要求字符串必须完全符合正则表达式
+         *      eg:/^a$/只能匹配到  'a','aa'也不行
+         */
+        var regex = /^a/;
+        regex = /a$/;
+        console.log("^测试:"+regex.test('bac'));
+        console.log("^测试:"+regex.test('abc'));
+        console.log("$测试:"+regex.test('bca'));
+
+        regex = /^a$/;
+        regex = /^a|a$/;
+        console.log("^和$测试:"+regex.test('aa'));
+        console.log("^和$测试:"+regex.test('a'));
+
+        /**
+         * 练习：判断手机号的正则
+         * 手机号规则：
+         *      1.长度11位
+         *      2.以1开头
+         *      3.第二位不能是 0和1和2，即 3-9
+         *      4.第三位开始任意数字都可以，不能超过9个
+         */
+        var phoneNo = '135678901231';
+        regex = /^1[3-9][0-9]{9}$/;
+        console.log('手机号校验结果:'+regex.test(phoneNo));
+
+        /**
+         * 检查一个正则表达式中是否包含  .
+         *  . : 在正则表达式中.表示任意字符，除了换行和行结束符
+         *  正则表达式中使用\作为转义字符,  \. == .   \\ == \
+         *  注意：使用构造函数构造正则表达式的时候，参数是个字符串，所以当构造函数中
+         *  使用\的时候，要使用\\来表示一个\
+         */
+        regex = /./;
+        regex = /\./;
+        regex = /\//;
+        regex = /\\/;
+        regex = new RegExp('\.');
+        regex = new RegExp('\\.');
+        console.log(".测试:"+regex.test('a.'));
+        console.log(".测试:"+regex.test('a/'));
+        console.log(".测试:"+regex.test('a\\'));  //字符串中\也是转义字符所以  \\ == \
+
+        regex = /[a-z5-9_]/;
+        console.log(regex.test('A'));
+        console.log(regex.test('1'));
+        console.log(regex.test('_'));
+        console.log(regex.test('z5_'));
+
+        /**
+         * 正则中一些常用特殊含义表达式
+         * \w:表示任意字母、数字、和下划线 _   ==  [A-z0-9_]
+         * \W:除了字母、数字、下划线   ==  [^A-z0-9_]
+         * \d:任意的数字  == [0-9]
+         * \D:除了数字  == [^0-9]
+         * \s:空格
+         * \S:除了空格
+         * \b:单词边界
+         * \B:除了单词边界
+         */
+
+        regex=/\w/;
+        console.log(regex.test('adf2324_'));
+
+        /**
+         * 创建一个正则表达式，判断一个字符串是否包含 child字符串
+         */
+        regex = /child/;
+        regex = /\bchild\b/;
+        console.log('单词边界'+regex.test('hello children'));
+
+        /**
+         * 去除字符串中的空格
+         * 使用 ""替换空格即可
+         * /^\s*|\s*$/g 或 /^\s+|\s+$/g ： 只去除开头和结尾的空格，中间的不会去掉
+         */
+        var msg = '   asdf dfd  d  ';
+        //msg = msg.replace(/\s/g, "");  //这样会把所有的空格全部去掉,但是中间的一般不会去掉
+        msg = msg.replace(/^\s*|\s*$/g, "");  //只去除开头和结尾的空格，中间的不会去掉
+
+        console.log(msg);
+
+        /**
+         * 练习：电子邮件的正则表达式
+         *   xinchen  .liu  @  163  .com.cn (有的后面是只有.com,有的只有.cn，有的两者都有)
+         *  规则：
+         *      1. @符号前可以是  任意的字母、数字、下划线和 .
+         *      2. @后面可以是任意字母数字  .后面是任意字母[2-5]，一般是2到5位
+         *
+         *  正则表达式：
+         *      \w{3,}  (\.\w+)*  @  [A-z0-9]+  (\.[A-z]{2,5}){1,2}
+         */
+
+        var email = "asdfds123@china.com.cn";
+        email = "3423dsfs@123.com.cn.cn";
+        regex = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+        console.log("email测试:"+regex.test(email));
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

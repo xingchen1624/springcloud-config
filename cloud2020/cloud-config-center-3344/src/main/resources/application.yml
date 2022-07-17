@@ -1,0 +1,36 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/xingchen1624/springcloud-config.git
+          #ssh的方式不行，目前原因不明
+          #uri: git@github.com:xingchen1624/springcloud-config.git
+          #搜索目录
+          search-paths:
+          - springcloud-config
+      #读取分支
+      label: main
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:7001/eureka
+
+  #rabbitmq相关设置
+  rabbitmq:
+    host: localhost
+    port: 5672 #注意15672是管理界面的端口，5672是连接端口
+    username: guest
+    password: guest
+  
+#rabbitmq相关配置，暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
+ 

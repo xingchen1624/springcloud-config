@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery事件自动触发</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".son").click(function (event) {
+                alert("this is son");
+            })
+            $(".father").click(function () {
+                alert("this is father");
+            })
+
+            /*
+            * 1.自动触发事件有两种方式 trigger和 triggerHandler
+            * 区别：
+            * trigger自动触发事件会同时触发事件冒泡
+            * triggerHandler不会触发事件冒泡
+            * trigger自动触发事件会同时触发默认行为
+            * triggerHandler不会触发默认行为
+            * */
+
+            /*
+            * 1.自动触发事件 trigger
+            * */
+            // $(".father").trigger("click");
+
+            /*
+            * 2.自动触发事件 triggerHandler
+            * */
+            /*$(".father").triggerHandler("click");
+
+            $(".son").triggerHandler("click");
+
+            $("input[type='submit']").click(function () {
+                alert("submit");
+            });
+
+            $("input[type='submit']").trigger("click");*/
+
+            $("a").click(function (event) {
+                alert("a");
+            });
+            $("span").click(function (event) {
+                alert("aa");
+            });
+
+            //$("a").triggerHandler("click");
+            /*
+            * trigger自动触发事件会同时触发默认行为
+            * 当这里用trigger，却没有触发默认行为，没有达到预期效果，原因不明，只能死记硬背
+            * a标签比较特殊，trigger无法触发a的默认行为。
+            * 那怎么实现触发a默认行为呢？参考上面的事件冒泡，可以给a标签加一个子标签，用子标签事件
+            * 冒泡到a标签即可
+            * */
+            $("a").trigger("click");
+            $("span").trigger("click");
+
+        });
+    </script>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .father{
+            width: 200px;
+            height: 200px;
+            background-color: #2A91D8;
+        }
+        .son{
+            width: 100px;
+            height: 100px;
+            background-color: #be2f64;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">
+
+        </div>
+    </div>
+    <a href="https://www.baidu.com"><span>注册</span></a>
+    <form action="https://www.taobao.com">
+        <input type="text" name="" />
+        <input type="submit"/>
+    </form>
+</body>
+</html>

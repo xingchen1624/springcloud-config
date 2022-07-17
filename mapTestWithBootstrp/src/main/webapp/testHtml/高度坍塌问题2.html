@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解决高度塌陷问题方式二</title>
+    <style type="text/css">
+        .box1{
+            border:1px #be2626 solid;
+            /*width:100px;*/
+            /*height: 100px;*/
+            /*background-color: #00BE67;*/
+        }
+        .box2{
+            width:100px;
+            height: 100px;
+            background-color: #1eed8e;
+            float: left;
+        }
+
+        /*
+            使用clear来解决高度塌陷问题
+            方案：在高度塌陷的父元素内部加一个空白的div
+            由于这个div没有浮动，所以它是可以撑开父元素高度的，但是由于box2浮动带来的影响，使其
+            出现上移了。我们可以使用clear清除box2浮动对其的影响，让其保持在原位置即可解决
+            该方式几乎没有副作用，推荐使用。比overflow:hidden副作用还小，并且兼容所有浏览器
+
+            使用这种方式虽然可以解决问题，但是会在页面中添加多余的页面结构(影响几乎可以忽略，但不完美)
+
+        */
+        /*.clear{
+            clear: both;
+        }*/
+
+        /*
+            通过:after伪类选中指定元素后面,和添加一个空的div效果一样，并且不用添加多余的空 div
+            最推荐的方式。但是不兼容ie6,如果是ie6添加  zoom:1即可
+        */
+        .clearfix:after{
+            /*添加内容*/
+            content: '';
+            /*转换为块元素*/
+            display: block;
+            /*清除两侧浮动*/
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1 clearfix">
+        <div class="box2"></div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <!--
+        colspan横向占用单元格数量，rowspan纵向占用的单元格数量
+    -->
+    <table border="1" id="t1">
+        <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>d</td>
+        </tr>
+        <tr>
+            <td>e</td>
+            <td>f</td>
+            <td colspan="2">g</td>
+        </tr>
+    </table>
+    <br><br><br><br><br>
+    <table id="t2">
+        <tr>
+            <!--th是特殊的td，用来表示表头，自带一些默认的样式-->
+            <th>学号</th>
+            <th>姓名</th>
+            <th>住址</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>孙悟空</td>
+            <td>花果山</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>猪八戒</td>
+            <td>高老庄</td>
+        </tr>
+    </table>
+    <br><br><br><br><br>
+    <!--
+        有时表格要分为表头、主体、表格底部
+        thead tbody tfoot
+        thead显示在表格最上边，无论写在table中的什么位置，tfoot在最后，tbody在中间
+
+        注意：如果表格中没有tbody标签，浏览器会自动添加tbody标签，并且将所有tr放到tbody中
+        所以tr是tbody的子元素而不是table
+    -->
+    <table id="t3">
+        <thead>
+            <tr>
+                <!--th是特殊的td，用来表示表头，自带一些默认的样式-->
+                <th>日期</th>
+                <th>收入</th>
+                <th>支出</th>
+                <th>合计</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2020-05-01</td>
+                <td>100000</td>
+                <td>10000</td>
+                <td>110000</td>
+            </tr>
+            <tr>
+                <td>2020-05-01</td>
+                <td>100000</td>
+                <td>10000</td>
+                <td>110000</td>
+            </tr>
+            <tr>
+                <td>2020-05-01</td>
+                <td>100000</td>
+                <td>10000</td>
+                <td>110000</td>
+            </tr>
+            <tr>
+                <td>2020-05-01</td>
+                <td>100000</td>
+                <td>10000</td>
+                <td>110000</td>
+            </tr>
+            <tr>
+                <td>2020-05-01</td>
+                <td>100000</td>
+                <td>10000</td>
+                <td>110000</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>合计</td>
+                <td>550000</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

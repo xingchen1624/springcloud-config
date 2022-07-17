@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js的toString方法</title>
+    <script type="text/javascript">
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        var person1 = new Person('孙悟空', 10);
+        /**
+         * 当打印对象的时候，其实就是打印的这个对象的toString方法的返回值
+         * 如果我们想自定义打印的输出，可以为对象添加一个toString方法
+         * 注意：这里和老师一样的代码，却没有实现效果，新加的toString方法没有起作用，
+         * 不知道是不是浏览器版本的问题
+         */
+        person1.toString = function () {
+            return 'name:'+this.name+',age:'+this.age;
+        };
+        console.log(person1);
+        //console.log(person1.toString());
+    </script>
+</head>
+<body>
+
+</body>
+</html>

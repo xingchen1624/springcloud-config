@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String字符串的相关方法</title>
+    <script type="text/javascript">
+        /**
+         * 字符串底层是以字符数组保存的
+         * charAt(i):返回指定位置的字符，索引从0开始
+         * charCodeAt():返回指定位置字符的Unicode编码
+         * String.fromCharCode():可以根据字符编码去获取字符
+         * concat():链接两个或多个字符串，类似于+
+         * indexOf():返回指定字符串第一次出现的索引，索引从0开始
+         * 具体用的时候参考手册
+         */
+        var str = 'nihao a!';
+        var result = str.charCodeAt(1);
+        console.log(str.length);
+        console.log(str[2]);
+        console.log('result='+result);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

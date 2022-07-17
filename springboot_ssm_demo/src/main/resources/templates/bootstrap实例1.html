@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>bootstrap示例</title>
+    <link href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="container">
+            我们在用bootstrap做前端开发的时候，经常会用到列移动、列排列，特别是在调试大屏幕显示器上显示效果时，经常用到。
+            首先看这3个英文单词的中文含义解释：
+            offset 补偿（课本上或相关教程上一般都把这个叫做“偏移”），其实就是在左侧补列（1~11列）
+            push 推
+            pull 拉
+            偏移、推、拉，都有一个参照物，即相对的位置，那就是左侧， 相对于左侧偏移、推、拉
+            写法比如：
+            col-md-offset-3（在左侧补充3列）
+            col-md-push-8（从左侧往右侧推8列）
+            col-md-pull-2（往左侧拉2列）
+            从效果上看offset和push效果一样，其实采取的方法是不同的，offset是直接在左侧补列达到偏移的效果，push是通过位置移动达到移动的效果
+        </div>
+        <br><br><br><br><br>
+        <div class="row">
+            <div class="col-lg-3 col-lg-push-9 col-md-4 col-md-push-8 col-sm-6 col-sm-push-6">
+                <div class="thumbnail">
+                    <img src="../static/icons/两个少女.jpg" th:src="@{icons/两个少女.jpg}" alt="缩略图">
+                    <div class="caption">
+                        <h3>图4</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-lg-push-3 col-md-4 col-md-pull-0 col-sm-6 col-sm-pull-6">
+                <div class="thumbnail">
+                    <img src="../static/icons/轻音.jpg" th:src="@{icons/轻音.jpg}" alt="缩略图">
+                    <div class="caption">
+                        <h3>图3</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-lg-pull-3 col-md-4 col-md-pull-8 col-sm-6">
+                <div class="thumbnail">
+                    <img src="../static/icons/动漫图片-猫耳娘.png" th:src="@{icons/动漫图片-猫耳娘.png}" alt="缩略图">
+                    <div class="caption">
+                        <h3>图2</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-lg-pull-9 col-md-4 col-sm-6">
+                <div class="thumbnail">
+                    <img src="../static/icons/两个少女.jpg" th:src="@{icons/两个少女.jpg}" alt="缩略图">
+                    <div class="caption">
+                        <h3>图1</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../static/js/jquery-1.11.3.js" th:src="@{js/jquery-1.11.3.js}"></script>
+<script src="../static/js/bootstrap.min.js" th:src="@{js/bootstrap.min.js}"></script>
+</html>

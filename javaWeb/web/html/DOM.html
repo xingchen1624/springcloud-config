@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <script type="text/javascript">
+        //页面加载完成后执行onload方法，否则获取不到按钮，因为页面是顺序执行的，head里执行
+        //js的时候，页面还没有加载
+        window.onload = function () {
+            var btn = window.document.getElementById('btn');
+            console.log(btn);
+            btn.innerText = 'button';
+            //btn.innerHTML = 'button'; //innerHTML包含标签，innerText只是文本
+        }
+
+        /**
+         * js事件
+         * 事件就是用户和浏览器之间的交互行为
+         */
+        function clickEvent(a) {
+            a.innerText = '莫挨老子!';
+        }
+
+    </script>
+</head>
+<body>
+    <button type="button" id="btn" name="myBtn" onclick="clickEvent(this)">按钮</button>
+    <button type="button" id="btn2" name="myBtn2">按钮2</button>
+    <script type="text/javascript">
+        var btn = window.document.getElementById('btn2');
+        /**
+         * 可以通过该对应节点事件绑定处理函数来处理，推荐
+         */
+        btn.onclick = function (ev) {
+            console.log(ev);
+            this.innerText = '你还点!';
+        }
+    </script>
+</body>
+</html>

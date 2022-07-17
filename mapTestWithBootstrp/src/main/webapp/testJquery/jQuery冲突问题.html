@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery冲突问题</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        /*
+        *  其它第三方js库也有可能使用$符号，出现冲突问题
+        *  jQuery解决办法，释放对$符号的使用权
+        *  1.jQuery.noConflict();释放后，所有$的地方都可以使用 jQuery代替
+        *  2.不想使用jQuery代替，自定义代替符号
+        *  var jq = jQuery.noConflict();
+        * */
+        var jq = jQuery.noConflict();
+        jq(function () {
+            alert("111");
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+#t1{
+    width: 50%;
+    margin:0 auto;
+}
+
+#t2{
+    width: 50%;
+    margin: 0 auto;
+    /*border:1px #d2346e solid;*/
+    /*
+        table和td边框之间默认有个距离，可以通过 border-spacing来设置这个距离。
+        距离为0后，表格和td边框合并在一起，边框线条变粗1倍，可以通过border-collapse属性解决
+        如果设置了 border-collapse后，border-spacing属性失效
+    */
+    border-spacing: 0px;
+    /*设置表格边框合并*/
+    border-collapse: collapse;
+    /*设置背景颜色*/
+    /*background-color: #bcca9e;*/
+}
+
+#t2 td,th{
+    border:1px #d2346e solid;
+}
+
+/*nth-child  even:奇数行*/
+#t2 tr:nth-child(odd){
+    background-color: #bcca9e;
+}
+
+/*鼠标移动到单元格上设置背景色  ie6不支持除a:hover以外的元素的 hover伪类*/
+tr:hover{
+    background-color: #2a4137;
+}
+
+#t3{
+    width: 50%;
+    margin: 0 auto;
+    /*border:1px #d2346e solid;*/
+    /*
+        table和td边框之间默认有个距离，可以通过 border-spacing来设置这个距离。
+        距离为0后，表格和td边框合并在一起，边框线条变粗1倍，可以通过border-collapse属性解决
+        如果设置了 border-collapse后，border-spacing属性失效
+    */
+    border-spacing: 0px;
+    /*设置表格边框合并*/
+    border-collapse: collapse;
+    /*设置背景颜色*/
+    /*background-color: #bcca9e;*/
+}
+
+#t3 td,th{
+    border:1px #d2346e solid;
+}
+
+/*nth-child  even:偶数行*/
+#t3 tr:nth-child(even){
+    background-color: #bcca9e;
+}

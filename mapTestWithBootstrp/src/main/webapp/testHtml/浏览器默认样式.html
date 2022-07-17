@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览器默认样式</title>
+    <style type="text/css">
+        /**
+            浏览器为了在页面没有样式的时候也有一个好的显示效果，会给元素加一些默认的样式
+            所以我们在编写样式之前，一般我们需要将浏览器默认样式去掉
+         */
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: #1eed8e;
+        }
+
+        /**
+        去除浏览器的默认样式，不过用*性能不是很好
+         */
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <p>p标签1</p>
+    <p>p标签2</p>
+</body>
+</html>

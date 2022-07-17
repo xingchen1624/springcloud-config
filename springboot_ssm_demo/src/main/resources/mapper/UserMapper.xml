@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzc.springboot.ssm.dao.UserMapper" >
+    <!--使用resultMap-->
+    <resultMap type="com.lzc.springboot.ssm.domain.User" id="userMap">
+        <!--用id属性来映射主键字段-->
+        <id property="userId" column="user_id" />
+        
+        <!--用result属性来映射非主键字段，property为实体类属性名，column为数据表中的属性-->
+        <result property = "userName" column ="user_name"/>
+    </resultMap>
+    
+    <!--添加用户-->
+    <insert id="addUser" parameterType="com.lzc.springboot.ssm.domain.User">
+        insert into user_info(user_name) values (#{userName})
+    </insert>
+    
+    <!--编辑用户-->
+    <update id="updateUser" parameterType="com.lzc.springboot.ssm.domain.User">
+        update user_info set user_name=#{userName} where user_id=#{userId}
+    </update>
+    
+    <!--删除用户-->
+    <delete id="delUser" parameterType="integer">
+        delete from user_info where user_id=#{userId}
+    </delete>
+    
+    
+    <!--根据用户名称查询用户信息-->
+    <select id="selectUserByName" resultType="com.lzc.springboot.ssm.domain.User" parameterType="string">
+        SELECT
+          user_id as userId,
+          user_name as userName
+          FROM user_info
+          WHERE user_name = #{name}
+    </select>
+    
+    <select id="queryPersonList" resultType="com.lzc.springboot.ssm.domain.Person">
+        SELECT
+          id,
+          name,
+          location,
+          age,
+          birthday
+          FROM person
+    </select>
+    
+    <!--查询一个字段-->
+    <select id="selectUserIdByName" parameterType="string" resultType="string">
+        select user_id as userId from user_info
+        <where>
+            user_name = #{userName}
+        </where>
+    </select>
+    
+    <!--查询部分字段-->
+    <select id="queryUserInfoById" resultType="map" parameterType="int">
+        select user_id as userId,user_name as userName from user_info
+        <where>
+            user_id = #{userId}
+        </where>
+    </select>
+    
+    <!--查询部分字段-->
+    <select id="queryUserInfoById2" resultMap="userMap" parameterType="int">
+        select user_id,user_name from user_info
+        <where>
+            user_id = #{userId}
+        </where>
+    </select>
+</mapper>

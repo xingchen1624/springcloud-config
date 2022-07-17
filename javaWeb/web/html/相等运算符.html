@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关系运算符 - 相等运算符</title>
+    <script type="text/javascript">
+        /**
+         * 1. ==  比较两个值是否相等，相等返回true，否则false
+         * 使用 == 比较时，如果值的类型不同，会自动进行类型转换，转为相同类型进行比较
+         *
+         * 2. != 比较两个值是否不相等，相等返回false，否则true
+         * 使用 != 比较时，如果值的类型不同，会自动进行类型转换，转为相同类型进行转换
+         *
+         * 3. === 全等，类似于 == ，但是不会自动进行类型转换，如果两个值类型不同，直接返回false
+         * 4. !== 不全等，类似于 !=,但是不会自动进行类型转换，如果两个值类型不同，直接返回true
+         */
+        console.log(1 == 1);  //true
+        console.log("1" == 1);  //true
+        console.log("1" == true);  //true
+        console.log(null == 0); //false
+
+        /**
+         * undefined衍生自null，所以和null比较返回true
+         */
+        console.log(undefined == null);
+
+        //NaN不和任何值相等，包括它本身.可以通过isNaN来判断一个变量是否是NaN
+        console.log(NaN == null);
+        console.log(NaN == NaN);
+
+        var a = NaN;
+        console.log(isNaN(a));
+
+        console.log("----------------  != -----------------");
+        console.log(1 != 1);
+        console.log("a" != "a");
+        console.log("1" != 1);
+        console.log(1 != 2);
+
+        console.log("----------------  === -----------------");
+        console.log("1" == 1);
+        console.log("1" === 1);
+        console.log(null == undefined);
+        console.log(null === undefined);
+
+        console.log("----------------  !== -----------------");
+        console.log("1" !== 1);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

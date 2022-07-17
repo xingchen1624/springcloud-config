@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js条件运算符</title>
+    <script type="text/javascript">
+        /**
+         * 条件运算符也叫三元运算符
+         * 语法：
+         *  条件表达式?语句1:语句2;
+         *  如果条件表达式的结果不是一个布尔值，会转为布尔值，再判断
+         */
+        console.log(2 > "1" ? true : false);
+        var a = 3;
+        var b = 5;
+        var c = 10;
+        var max = a<b?a:b;
+        //求a,b,c中的最大值
+        max = a > b ? (a > c ? a : c) : (b > c ? b : c);
+
+        console.log("max = "+max);
+        console.log("a"?true:false);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

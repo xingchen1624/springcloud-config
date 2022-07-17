@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js强制类型转换</title>
+    <script type="text/javascript">
+        /**
+         * 1.将其它数据类型转为String
+         *  ①调用被转换数据类型的toString()方法，不会影响原变量,null和undefined不能使用该方法
+         *  ②调用String()函数，并将被转换的数据作为参数传递给该函数,null和undefined也可以使用该方法
+         */
+        var a = 1;
+        a = 123;
+        a = null;
+        a = String(a);
+
+        console.log(typeof a);
+        console.log(a);
+        console.log(typeof (true.toString()));
+
+        console.log("-----------------------------");
+
+        /**
+         * 2.将其它数据类型转为Number
+         *  ①使用Number()函数,字符串转数值，如果字符串是纯数字，可以直接转。
+         *  如果包含非法字符，则转为NaN.如果字符串是空串或全是空格的串，会被转为0.
+         *  true被转为1，false转为0. null转数值为0.undefined转数值为NaN
+         *
+         *  ②专门用来处理字符串转数值
+         *  parseInt() parseFloat().可以取出其中的有效字符进行转换，遇到第一个非法字符后
+         *  后面的会被舍弃掉.
+         *  对于非String使用这两个函数，会先将其转换为String再进行转换为数值
+         *
+         */
+        var b = "123";
+        b = true;
+        b = null;
+        b = Number(b);
+        b = "50px";
+        b = parseInt(b);
+        b = "123.45px";
+        b = parseFloat(b);
+        console.log(b);
+        console.log(typeof b);
+
+        console.log("-----------------------------");
+
+        /**
+         * 3.其它类型转为Boolean
+         *  使用Boolean()函数
+         *      数字转布尔：除了 0和NaN 转换后为false，其它都为true
+         *      字符串转布尔：除了空串，其它都是true
+         *      null和undefined：都是false
+         *      对象：也是true
+         */
+        var c = 123;
+        c = null;
+        c = undefined;
+        c = Infinity;
+        c = Boolean(c);
+        console.log(c);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>公共模板</title>
+</head>
+<body>
+    <!--抽取公共代码  th:fragment-->
+    <div th:fragment="head">
+        <a class="navbar-link" style="color: dimgrey;font-size: 20px;float: right" th:href="@{/user/logout}">注销</a>
+        <br>
+        <br>
+        <br>
+        <a th:href="@{/main.html}" th:class="${active=='login.html'?'myA':''}">首页</a>
+    </div>
+    <div th:fragment="sidebar">
+        <a th:href="@{/user/empList}" th:class="${active=='empList.html'?'myA':''}">员工列表</a>
+    </div>
+</body>
+</html>

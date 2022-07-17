@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于this</title>
+    <script type="text/javascript">
+        /**
+         * 解析器在调用函数的时候会向函数内部传递一个隐含的参数  this
+         * this指向一个对象，这个对象是我们函数的执行上下文
+         * 根据函数调用方式不同，this会指向不同的对象
+         *    1.以函数的方式调用时，this就是window
+         *    2.以方法的方式调用时，this就是调用方法的对象
+         *    3.当以构造函数调用时，this就是新创建的那个对象(new 出来的那个对象)
+         */
+        function func() {
+            console.log(this);
+        }
+
+        func();
+
+        //创建一个对象
+        var obj = {
+            name:'孙悟空',
+            sayName:func
+        };
+        console.log(obj.sayName == func);
+        obj.sayName();
+
+        var age = 10;
+        
+        function myAge() {
+            console.log(this.age);
+        }
+
+        //创建一个对象
+        var p1 = {
+            name:'孙悟空',
+            sayName:myAge,
+            age:20
+        };
+        var p2 = {
+            name:'猪八戒',
+            sayName:myAge,
+            age:30
+        };
+
+        myAge();
+        //我们希望谁调用就打印谁的age
+        p1.sayName();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

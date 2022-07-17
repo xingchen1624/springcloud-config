@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>清除浮动效果</title>
+    <style type="text/css">
+        .box1{
+            width:100px;
+            height: 100px;
+            background-color: #be2626;
+            /*设置浮动*/
+            float: left;
+        }
+        .box2{
+            width:200px;
+            height: 200px;
+            background-color: #1eed8e;
+            /*
+                当box1浮动的时候，box2会自动上移，有时候我们不想要box2上移，
+                即排除浮动元素对当前元素的影响，可以使用clear属性
+                    left 在左侧不允许浮动元素。
+                    right 在右侧不允许浮动元素。
+                    both 在左右两侧均不允许浮动元素。清除对当前元素影响最大的元素的影响
+                    none 默认值。允许浮动元素出现在两侧。
+                    inherit 规定应该从父元素继承 clear 属性的值。
+                清除浮动影响后，当前元素还在box1浮动之前的位置
+            */
+            clear:left;
+            float:right;
+        }
+        .box3{
+            width:300px;
+            height: 300px;
+            background-color: #3c763d;
+            clear:right;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+</body>
+</html>

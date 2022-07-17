@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery对象</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        /*
+        *   1.什么是jQuery对象
+        *   re:jQuery对象是一个伪数组
+        *   2.什么是伪数组
+        *   re：有0到length-1个属性，并且有length属性
+        * */
+        $(function () {
+            var $div = $("div");
+            console.log($div);
+        });
+
+    </script>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

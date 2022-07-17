@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对联广告效果</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            width: 100px;
+            height: 300px;
+            display: none;
+        }
+        .left{
+            float: left;
+            position: fixed;
+            left: 0px;
+            top: 200px;
+        }
+        .right{
+            float: right;
+            position: fixed;
+            right: 0px;
+            top: 200px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            //1.监听窗口滚动事件
+            $(window).scroll(function () {
+                //1.1获取网页滚动的偏移量
+                var offset = $("html,body").scrollTop();
+                //var offset = $(this).scrollTop();
+                console.log(offset);
+                //1.2判断网页滚动到指定位置
+                if(offset >= 500){
+                    $("img").show(1000);
+                }else{
+                    $("img").hide(1000);
+                }
+            });
+        })
+    </script>
+
+</head>
+<body>
+    <img src="../static/icons/两个少女.jpg" alt="左侧广告图片" class="left">
+    <img src="../static/icons/动漫图片-猫耳娘.png" alt="右侧广告图片" class="right">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</html>

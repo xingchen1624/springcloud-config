@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内联元素的盒子模型</title>
+    <style type="text/css">
+        /*
+            内联元素设置width和height无效
+            内联元素可以设置水平和垂直方向的内边距，但是垂直方向的内边距不会影响页面布局(不会挤压其它元素)
+            同样内联元素边框也是垂直方向不影响页面布局
+            内联元素只支持水平方向的外边距，不支持垂直方向的外边距，并且水平方向的外边距不会重叠
+        */
+        span{
+            background-color: #1eed8e;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: #E04141;
+        }
+        .span1{
+            border: #E04141 20px solid;
+            margin-right: 100px;
+        }
+        #span2{
+            width: 100px;
+            height: 100px;
+            padding-left: 50px;
+            padding-bottom: 50px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <span> 我是一个span1 </span>
+    <span class="span1"> 我是一个span2 </span>
+    <span id="span2"> 我是一个span3 </span>
+    <div class="box1"></div>
+</body>
+</html>

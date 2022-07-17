@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>测试thymeleaf语法</title>
+</head>
+<body>
+    <!--不会将特殊符号转义，直接输出-->
+    <span th:text="${msg}"></span>
+    <!--会将特殊符号转义-->
+    <span th:utext="${msg}"></span>
+    <!--循环-->
+    <h3 th:each="item:${arrays}" th:text="${item}"></h3>
+    <!--循环行内写法，不推荐使用-->
+    <h3 th:each="item:${arrays}">[[${item}]]</h3>
+
+</body>
+</html>

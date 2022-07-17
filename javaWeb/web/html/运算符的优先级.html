@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js运算符的优先级</title>
+    <script type="text/javascript">
+        /**
+         * 使用 , 分隔多条语句,可以同时声明多个变量
+         */
+        var a,b,c;
+        var a = 1,b = 2,c = 3;
+
+        /**
+         * 运算符的优先级
+         * ①先乘除后加减
+         * ② &&的优先级高于 ||
+         * 在JS中有个优先级的表，越靠上，优先级越高，无需记忆。可以使用()来改变优先级
+         */
+        var result = 1 + 2 * 3;
+        result = 1 || 2 && 3;
+        result = (1 || 2) && 3;
+        console.log("result="+result);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

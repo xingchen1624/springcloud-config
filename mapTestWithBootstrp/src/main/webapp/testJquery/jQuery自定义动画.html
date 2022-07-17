@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery自定义动画</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            background: #2ECEE7;
+        }
+
+        .two{
+            background: #B75445;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            $("button").eq(0).click(function () {
+                /*
+                * 自定义动画
+                * 这个函数的关键在于指定动画形式及结果样式属性对象。
+                * 这个对象中每个属性都表示一个可以变化的样式属性（如“height”、“top”或“opacity”）。
+                * 注意：所有指定的属性必须用骆驼形式，比如用marginLeft代替margin-left
+                *
+                * 4个参数
+                * params:一组包含作为动画属性和终值的样式属性和及其值的集合
+                    speed:三种预定速度之一的字符串("slow","normal", or "fast")或表示动画时长的毫秒数值(如：1000)
+                    easing:要使用的擦除效果的名称(需要插件支持).默认jQuery提供"linear" 和 "swing".
+                    fn:在动画完成时执行的函数，每个元素执行一次
+                * */
+
+                /*$(".one").animate({
+                    width:500
+                },1000,function () {
+                    alert("自定义动画执行完毕");
+                });*/
+
+                $(".one").animate({
+                    marginLeft:500
+                },2000,function () {
+                    //alert("自定义动画执行完毕");
+                });
+
+                $(".two").animate({
+                    marginLeft:500
+                },2000,"linear",function () {
+                    // alert("自定义动画执行完毕");
+                });
+            });
+
+            /*属性累加*/
+            $("button").eq(1).click(function () {
+                $(".one").animate({
+                    width:"+=100"
+                },1000,function () {
+
+                });
+            });
+
+            /*关键字*/
+            $("button").eq(2).click(function () {
+                $(".one").animate({
+                    width:"hide"
+                },1000,function () {
+                    alert("关键字");
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+    <button>操作属性</button>
+    <button>累加属性</button>
+    <button>关键字</button>
+    <div class="one"></div>
+    <div class="two"></div>
+</body>
+</html>

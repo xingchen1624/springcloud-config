@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数的方法</title>
+    <script type="text/javascript">
+        /**
+         * 函数对象的方法
+         * call和apply
+         * 需要通过函数对象来调用,当对函数调用这两个方法，都会执行函数
+         * 在调用这两个方法的时候，可以将一个对象指定为第一个参数，此时这个对象就成为
+         * 函数执行的this.如果使用函数名调用  func()，那么this就是window
+         * call方法可以将实参在对象参数之后依次传递
+         * apply方法需要将实参封装到数组中统一传递
+         *
+         * --this情况：
+         *      1.以函数形式调用，this是window
+         *      2.以方法的形式调用，this是调用方法的对象
+         *      3.以构造函数的形式调用，this是新创建的对象
+         *      4.使用call和apply调用，this是方法里的第一个对象参数
+         */
+        var obj = {
+            name:'王东升',
+            sayName:function () {
+                alert(this.name);
+            }
+        };
+        function func(a,b) {
+            alert(this.name);
+        }
+
+        func.call(obj,2,3);
+        func.apply(obj, [2, 3]);
+        obj.sayName();
+
+
+        /**
+         * 在调用函数时
+         * 浏览器除了默认传递一个函数上下文对象this，还传递一个封装实参的对象arguments
+         *  -arguments是一个类数组对象，但不是数组
+         *  arguments.length就是实参的个数
+         *  即使不定义形参，也可以通过arguments来使用实参arguments[0],arguments[1]...
+         *  arguments里有一个属性叫callee，这个属性对应一个函数对象，就是当前在执行的函数对象
+         */
+        function func2() {
+            console.log(Array.isArray(arguments));
+            console.log(arguments[0]);
+            console.log(arguments[1]);
+            console.log(arguments.callee);
+        }
+
+        func2('hi',true);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

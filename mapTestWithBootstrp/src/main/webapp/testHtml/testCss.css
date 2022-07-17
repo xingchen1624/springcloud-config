@@ -1,0 +1,131 @@
+/*
+    元素选择器，多个用,隔开
+*/
+p,span{
+    color: #6ab14a;
+    font-size: 30px;
+}
+
+div{
+    color: #1B6AAA;
+    font-size: 50px;
+}
+
+/*
+    id选择器
+*/
+#p1{
+    color:#2ECEE7;
+}
+
+/*
+    类选择器
+ */
+.pink2{
+    color: #c12e2a;
+}
+
+/*
+    选择器分组
+    同时选择多个选择器对应的元素
+    语法：选择器1,选择器2,选择器3...
+*/
+h1,#p0{
+    color: #fbd051;
+}
+
+/*
+    通配选择器
+    *：选择页面中的所有元素来设置样式
+ */
+/*
+*{
+    color: #d2346e;
+}*/
+
+/*
+    复合选择器，同时满足多个条件
+    给带有class=P3的span元素设置样式
+ */
+span.p3{
+    color: #855D10;
+    background-color: #fbd051;
+}
+
+/*
+    子元素和后代元素
+    子元素：直接被包含的元素，直接下级
+    父元素：直接包含子元素的元素，直接上级
+    祖先元素：直接或间接包含后代元素的元素
+    后代元素：直接或间接被包含的元素
+    兄弟元素：同级元素
+*/
+/*
+    后代元素选择器
+    语法： 祖先元素 后代元素{}
+*/
+div span{
+    background-color: rebeccapurple;
+}
+
+#div1 p span{
+    background-color: bisque;
+}
+
+/*
+    子元素选择器(ie6及以下的版本不支持该选择器)
+    语法： 父元素>子元素{}
+*/
+div > span{
+    background-color: goldenrod;
+}
+
+/*
+    伪类选择器
+    伪类用来表示元素的一种状态：比如访问过的超链接，获取焦点的文本框等
+    为这些处于特殊状态的元素设置样式，使用伪类选择器
+    eg: a:link(普通未访问过的)  a:visited(访问过的) a:hover(鼠标移动到元素上) a:active(激活的超链接)
+    :focus(获取焦点)  ::selection(为选中的内容设置样式，注意是两个：)
+    由浏览器根据历史记录来判断是否访问过
+    visited由于涉及到用户隐私，所以该选择器里只能设置字体颜色，不能设置其它属性
+*/
+a:link{
+    color: yellowgreen;
+}
+
+a:visited{
+    color:orangered;
+}
+
+a:hover{
+    color:brown;
+}
+
+a:active{
+    color: red;
+}
+
+p:hover{
+    background-color: #1B6AAA;
+}
+
+input:focus{
+    background-color: #2e3b47;
+}
+
+/*
+火狐浏览器里要写成p::-moz-selection，其它浏览器里使用 p::selection
+ */
+p::selection{
+    background-color: orangered;
+}
+
+P:first-letter{
+    font-size: 50px;
+}
+
+#wys:before{
+    color:red;
+    content: '添加在最前面，但无法选中，因为是通过css添加的';
+}
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>长度单位</title>
+    <style type="text/css">
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: orangered;
+        }
+        .box2{
+            width: 50%;
+            height: 50%;
+            background-color: yellow;
+        }
+        .box3{
+            font-size: 30px;
+            width: 10em;
+            height: 50%;
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        px:像素  一个像素就是一个小点，分辨率就是像素表示
+        %:百分比  浏览器会根据父元素的属性值来计算当前元素的值，当父元素变化时，子元素也会变化
+        em:em和百分比类似，它是根据当前元素的字体大小（font-size）来设置的,eg:box3  30px * 10
+        当使用em的时候，字体大小发生变化，em样式也会变化。当设置字体相关样式时，经常使用em
+    -->
+    <div class="box1">
+        <div class="box2">
+            <div class="box3">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

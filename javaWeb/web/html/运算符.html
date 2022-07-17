@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS运算符</title>
+    <script type="text/javascript">
+        /**
+         * 运算符就是操作符
+         * typeof就是运算符：获取一个值的类型，以字符串的形式返回
+         * 算数运算符： + - * / %（取余数）
+         *  当对非Number类型的变量进行计算，会先转为Number类型再运算（除了和字符串做 + 操作,
+         *  其它操作都会先转为number，再运算）
+         *  任何值和NaN运算的时候，结果都是NaN
+         *  null转为Number为0
+         *  true:1   false:0
+         *  任何值和字符串做运算，都会转为字符串，并做拼接操作
+         *
+         * 123+"" <=> String(123)
+         */
+        var result = 1;
+        result = NaN + 1;
+        result = null + 1;
+        result = true + 1;
+        result = false + 1;
+        result = 1 + "2";
+        result = "1" + 2 + 3;
+        result = 1 + 2 + "3";
+
+        result = 100 - "1";
+        result = 2 * undefined;
+
+        result = 9 % 4;
+
+        console.log(result);
+
+        /**
+         * 可以用来进行隐式类型转换
+         * @type {string}
+         */
+        var d = "12";
+        d = d - 0;
+        console.log(typeof d);
+
+
+        /**
+         * 一元运算符
+         *  + （正号）
+         *  - （负号）：取反
+         *  对于非Number类型的值，先转为Number再运算，
+         *  所以可以使用 + 来将其它类型的数据转为Number
+         */
+        console.log("----------------------------一元运算符 start------------------------");
+        var a = 123;
+        a = true;
+        a = "10";
+        a = +a;
+
+        console.log("a = "+a);
+
+        console.log(typeof a);
+        //a = -a;
+
+        console.log("----------------------------自增、减运算符 start------------------------");
+        /**
+         * 自增和自减
+         * 自增分为 前++和后++
+         * 都会使原变量的值+1.不同的是 a++和++a这两个表达式的值不同。
+         * a++这个表达式等于原变量的值，
+         * ++a这个表达式等于自增后的值
+         *
+         * 自减类似
+         * a-- 和 --a
+         */
+        var c = 1;
+        /*c++;
+        ++c;*/
+        console.log(c++);
+        console.log(++c);
+        console.log("c = "+c);
+
+        var m = 20;
+        //  20 + 22 + 22
+        m = m++ + ++m + m;
+        console.log(m);
+
+        var n = 10;
+        n = n--;
+        //n = --n;
+        console.log(n);
+
+        console.log("----------------------------逻辑运算符 start------------------------");
+        /**
+         * 1. !：非运算  取反操作,如果是非布尔值取反，则会先转为布尔值再取反.（所以也可以用来进行类型转换）
+         *  可以使用两次取反，将一个数据转为 布尔值  eg: !!10 = true
+         *  true变false，false变true
+         * 2. &&:与
+         *  与运算：两边只要有一个不为true，就返回false.
+         *      js中的与为短路与，只要第一个为false，无需看第二个
+         * 3. ||:或
+         *  或运算：两边只要有一个不为false，就返回true. 或同样是短路或
+         *
+         *  对非布尔值进行 与、或运算的时候，会先转为布尔值再运算
+         */
+        var l = true;
+        l = 1;
+        l = null;
+        l = undefined;
+        l = !l;
+        console.log("!l="+l);
+        console.log(typeof l);
+
+        var x = true && false;
+        x = true || false;
+        console.log(x);
+
+        //true && alert('hi');
+
+        /**
+         * 数值类型的与运算，如果两个转换后都为true，则返回后面的一个，返回原值，不是转换后的true，false
+         * 如果两个值中有false，则返回靠前的false
+         * 与运算：
+         *  - 如果第一个值为true，则必然返回第二个值
+         *  - 如果第一个值为false，则直接返回第一个值
+         *
+         *  或运算
+         *   - 如果第一个值为true，则直接返回第一个值
+         *   - 如果第一个值为false，则直接返回第二个值
+         */
+        var y = 1 && 2;
+        //false && true
+        y = 0 && 2;
+        y = 2 && 0;
+        //false && false
+        y = NaN && 0;
+        y = 0 && NaN;
+        console.log("y = "+y);
+
+        //如果第一个值为true，则直接返回第一个值
+        var z = 1 || 2;
+        z = 2 || NaN;
+
+        //如果第一个值为false，则直接返回第二个值
+        z = NaN || 1;
+        z = 0 || 1;
+        z = "" || "hello";
+        console.log("z = "+z);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>块元素和内联</title>
+    <link rel="stylesheet" type="text/css" href="testCss.css"/>
+</head>
+<body>
+    <!--
+        div元素就是一个块元素，块元素独占一行
+        p,h1 - h6等都是块元素
+        div元素一般用来对页面进行布局，一般块元素里可以包含内联元素，但不会反过来使用
+        a可以包含任意的元素，除了它本身
+        p元素里不能放任何其它的块元素，虽然浏览器会尽力解析正确，但这样写不规范
+    -->
+    <div>
+        i am div1
+    </div>
+    <div>
+        i am div2
+    </div>
+
+    <!--
+        span是一个内联元素（也可以叫行内元素），只占自身大小的位置，不会独占一整行
+        a,iframe等也是内联元素，span标签一般用来选中文字，来给文字设置样式
+    -->
+    <span>span1</span>
+</body>
+</html>

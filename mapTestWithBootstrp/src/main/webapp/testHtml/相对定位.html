@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>相对定位</title>
+    <style type="text/css">
+        /*
+            定位：将指定元素放到页面的任意位置
+                absolute:生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。
+                元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+                fixed:生成绝对定位的元素，相对于浏览器窗口进行定位。
+                元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+                relative:生成相对定位的元素，相对于其正常位置进行定位。
+                因此，"left:20" 会向元素的 LEFT 位置添加 20 像素。
+                static:默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。
+                inherit:规定应该从父元素继承 position 属性的值
+            一般情况下，偏移量使用一个水平方向、一个垂直方向的偏移量就足够定位一个元素了
+
+
+        */
+        .box1{
+            width:200px;
+            height: 200px;
+            background-color: #be2626;
+        }
+        .box2{
+            width:200px;
+            height: 200px;
+            background-color: #1eed8e;
+            /*
+                1.当position设置为relative时，则开启了相对定位,如果值是static则不开启，left,right,top,bottom无效
+                当开启相对定位，但不设置偏移量时，元素不会发生任何变化
+                可以通过left right top bottom来设置元素的偏移量
+                2.相对定位是相对于元素在文档流中原来的位置进行偏移
+                3.相对定位的元素不会脱离文档流，其所占位置还在，不会被其它元素占用
+                4.相对定位的元素在文档流中的位置提升一个层级，如果元素太大，会覆盖其它元素
+                5.相对定位不会改变元素的性质，块元素不会变为内联元素，内联元素也不会变为块元素
+                    所以span s1定义了position，width还是无效，仍是个内联元素
+            */
+            position: relative;
+            left: 200px;
+            top:200px;
+        }
+        .box3{
+            width:200px;
+            height: 200px;
+            background-color: #28a4c9;
+        }
+
+        #s1{
+            position: relative;
+            width: 500px;
+            background-color: #B75445;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+
+    <span id="s1">我是一个span</span>
+</body>
+</html>

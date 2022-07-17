@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery事件冒泡和默认行为</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            /*
+            * 1.什么是事件冒泡
+            * 子元素事件会传递给父元素
+            * 2.如何阻止事件冒泡
+            * 子元素事件中 使用 return false;
+            * 3.什么是默认行为
+            * 点击a标签会默认跳转链接，点击提交按钮，会自动向服务器提交数据这些默认的行为
+            * 4.如何阻止默认行为
+            * 
+            * */
+
+            $(".son").click(function (event) {
+                alert("this is son");
+                //1.阻止事件冒泡 return false;
+                //return false;
+                //2.阻止事件冒泡 event.stopPropagation();
+                event.stopPropagation();
+            })
+            $(".father").click(function () {
+                alert("this is father");
+            })
+            
+            $("a").click(function (event) {
+                alert("弹出注册框");
+                //1.阻止默认行为  return false;
+                //return false;
+                //2.阻止默认行为  event.preventDefault();
+                event.preventDefault();
+            });
+
+        });
+    </script>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .father{
+            width: 200px;
+            height: 200px;
+            background-color: #2A91D8;
+        }
+        .son{
+            width: 100px;
+            height: 100px;
+            background-color: #be2f64;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">
+
+        </div>
+    </div>
+    <a href="https://www.baidu.com">注册</a>
+    <form action="https://www.taobao.com">
+        <input type="text" name="" />
+        <input type="submit"/>
+    </form>
+</body>
+</html>

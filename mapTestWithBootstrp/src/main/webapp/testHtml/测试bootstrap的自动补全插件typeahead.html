@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试bootstrap的自动补全插件typeahead  基于bootstrap3-typeahead.js</title>
+    <link type="text/css" rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <script type="text/javascript" src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap3-typeahead.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var data = [{"id":"id1","displayName":"name1"}, {"id":"id2","displayName":"name2"}, {"id":"id3","displayName":"name3"}];
+            //设置默认值
+            $('#displayName').typeahead('val','defaultName');
+            //自动补全
+            $("#displayName").typeahead({
+                //配置minLength
+                minLength:3,//最少输入字符串
+                items:8,//最多显示的下拉列表内容
+                //1、先配置数据源(可以先不配置数据源，先配置其他东西)
+                source:function(query,process){//第一个为正在查询的值，第二个参数为函数(该函数)
+                    return process(data);
+                },
+                displayText:function (item) {
+                    return item.displayName;
+                },
+                highlighter: function (item) {
+                    var query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
+                    return item.replace(new RegExp('(' + query + ')', 'ig'), function ($1, match) {
+                        return '<span style="color: red;font-weight: bold">' + match + '</span>'
+                    })
+                },
+                updater : function (item) {
+                    console.log(item.id + '-' + item.displayName);
+                    $('#id').val(item.id);
+                    return item.displayName;
+                    //$('#displayName').typeahead('val',item.displayName);
+                }
+                //此时Source就搞定了，但是source的data里面是一个json数组{id:(userId),username:(username)},可以将username改写成name，就万事大吉了
+                //如果写的是username，还要提供一个displayText的方法
+
+                //用于告诉typeaheader怎么显示json对象数据
+                //function中需要传一个item，该item就是返回回来的一个一个json对象
+                /*displayText:function(item){
+                    return item.username;
+                }*/
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="div1">
+        <input type="hidden" name="id" id="id"/>
+        <input type="text" class="typeahead" id="displayName" name="displayName" autocomplate="off" />
+    </div>
+
+    <div style="margin: 50px 50px">
+        <label for="product_search">Product Search: </label>
+        <input id="product_search" type="text" data-provide="typeahead"
+               data-source='["Deluxe Bicycle", "Super Deluxe Trampoline", "Super Duper Scooter"]'>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js表示其它进制的数字</title>
+    <script type="text/javascript">
+        /**
+         * 16进制:以 0x开头
+         * 0x
+         */
+        var a = 0x10;
+        console.log(a);
+
+        /**
+         * 8进制：以 0开头
+         */
+        var b = 010;
+        console.log(b);
+
+        /**
+         * 2进制：以 0b开头  。某些浏览器可能不支持
+         */
+        var c = 0b10;
+        console.log(c);
+
+        /**
+         * 有些浏览器，使用parseInt转换的时候，会把 0开头的当成8进制解析
+         * 有的当10进制解析。为了统一，parseInt(d, 10);第二个参数表示进制
+         * @type {string}
+         */
+        var d = "070";
+        d = parseInt(d, 10);
+        console.log(d);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

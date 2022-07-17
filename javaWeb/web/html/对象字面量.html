@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象字面量</title>
+    <script type="text/javascript">
+        /**
+         * 创建一个对象
+         * 1. var obj = new Object();
+         * 2. 使用对象字面量来创建一个对象
+         *  - var obj = {属性名:属性值,属性名:属性值 ...};
+         *  属性名和属性值之间是一对对的名值对
+         */
+        var obj = {};
+        obj.name = '孙悟空';
+        console.log(obj.name);
+
+        /**
+         * 使用字面量创建对象，可以在创建对象的同时指定属性
+         * 属性名可以加引号，也可以不加，一般不加，如果是特殊的字符串需要加引号
+         */
+        var obj2 = {
+            name: "猪八戒",
+            age:18,
+            sayName:function () {
+                alert('对象的方法');
+            }
+        };
+        obj2.sayName();
+        console.log(obj2);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

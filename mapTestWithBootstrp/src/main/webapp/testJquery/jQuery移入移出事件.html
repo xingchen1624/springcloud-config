@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery移入移出</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            /*
+            * mouseover和mouseout
+            * 子元素的移入和移出也会触发父元素的事件
+            *
+            * mouseenter和mouseleave
+            * 子元素的移入和移出不会触发父元素的事件
+            *
+            * hover方法
+            * 可以同时监听移入和移除
+            * */
+
+            /*$(".father").mouseover(function () {
+                console.log("鼠标移入");
+            });
+
+            $(".father").mouseout(function () {
+                console.log("鼠标移出");
+            });*/
+
+            /*$(".father").mouseenter(function () {
+                console.log("鼠标移入");
+            });
+
+            $(".father").mouseleave(function () {
+                console.log("鼠标移出");
+            });*/
+
+            /*$(".father").hover(function () {
+                console.log("鼠标移入");
+            },function () {
+                console.log("鼠标移出");
+            });*/
+
+            $(".father").hover(function () {
+                console.log("鼠标移入或者移出");
+            });
+
+        });
+    </script>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .father{
+            width: 200px;
+            height: 200px;
+            background-color: #2A91D8;
+        }
+        .son{
+            width: 100px;
+            height: 100px;
+            background-color: #be2f64;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

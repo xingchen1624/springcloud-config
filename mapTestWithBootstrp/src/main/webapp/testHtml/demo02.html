@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xhtml语法规范和内联框架</title>
+</head>
+<body>
+    <!--
+        1.html中不区分大小写，一般使用小写
+        2.HTML中的注释不能嵌、套
+        3.html标签必须结构完整，要么成对出现，要么自结束
+        4.HTML标签可以嵌套，但不能交叉嵌套
+        5.HTML标签中的属性的值需要使用引号，最好用到的属性都要有值
+    -->
+    1.<P>大p</P>
+    3.浏览器会尽最大努力解析HTML，不符合语法规范的内容，浏览器会自动补全，
+    但不能保证100%正确，所以要写全
+    <p>全</p>
+    <p>不全
+    4.<p>今天天气<b>真不错</b></p>
+
+    <!--
+        内联框架
+        使用iframe,src指向外部的一个路径，可以使用相对路径
+        在实际开发中不推荐使用iframe，因为内联框架中的内容不会被搜索引擎检索到
+        如果是内网项目，不需要被检索，可以使用iframe
+    -->
+    <iframe src="demo01.html" name="demo01" width="500px" height="500px"></iframe>
+
+    <!--
+        超链接
+        href:链接跳转的目标地址
+        target:指定窗口打开的位置, _self _blank等
+    -->
+    <a href="demo01.html" target="_blank">超链接</a>
+
+    <!--
+        <center>标签中的内容会默认在页面中居中显示,已废弃
+    -->
+    <center></center>
+
+</body>
+</html>

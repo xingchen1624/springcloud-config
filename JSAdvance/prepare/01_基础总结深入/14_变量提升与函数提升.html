@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>变量提升与函数提升</title>
+</head>
+<body>
+<!--
+1. 变量声明提升
+  * 通过var定义(声明)的变量, 在定义语句之前就可以访问到
+  * 值: undefined
+2. 函数声明提升
+  * 通过function声明的函数, 在之前就可以直接调用
+  * 值: 函数定义(对象)
+3. 问题: 变量提升和函数提升是如何产生的?
+-->
+<script type="text/javascript">
+  console.log('-----')
+  /*
+  面试题 : 输出 undefined
+   */
+  var a = 3
+
+  function fn () {
+    console.log(a)
+    var a = 4  //变量提升，提升到了对应作用域最前面，即函数最前面 《==》 var a; console.log(1);a=4;
+  }
+  fn()  //执行函数先找的是函数作用域内的变量a，然后返回，不会找全局中的变量a
+
+  console.log(b) //undefined  变量提升
+  fn2() //可调用  函数提升到对应作用域的最前面
+  // fn3() //不能  字面量形式声明函数不会函数提升，而是变量提升，要函数提升必须要用声明式声明函数
+
+  var b = 3
+  function fn2() {
+    console.log('fn2()')
+  }
+
+  var fn3 = function () {
+    console.log('fn3()')
+  }
+</script>
+</body>
+</html>

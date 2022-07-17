@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display的使用</title>
+    <style type="text/css">
+        a{
+            background-color: yellow;
+            /*
+                将a标签变大，设置宽高无效，因为内联元素不能设置宽高
+            */
+            /*width:100px;*/
+            /*height: 100px;*/
+
+            /*
+                使用display可以设置元素的显示效果
+                常用的值：
+                ①block：块状元素显示
+                ②inline:内联元素显示
+                ③inline-block:行内块元素，即可以像块元素一样设置宽高，也可以像内联元素一样不独占一行
+                ④none：元素在页面中被隐藏,元素也不在占用页面位置
+            */
+            display: block;
+            width:100px;
+            height: 100px;
+        }
+
+        /*
+            visibility属性
+            ①visible:默认值
+            ②hidden：页面元素被隐藏，但是会占用页面位置
+        */
+        .box{
+            width:100px;
+            height: 100px;
+            background-color: #1eed8e;
+            visibility: hidden;
+        }
+
+        /*
+            子元素是在父元素的内容区中的，理论上子元素的大小最大 = 父元素的内容区的大小
+            如果子元素大小超过了父元素内容区，超出的部分会在父元素外显示，超出的部分称为 “溢出内容”
+            父元素默认将子元素溢出内容在父元素外显示，可以通过设置父元素的overflow属性设置“溢出内容”的显示效果
+
+            visible 默认值。内容不会被修剪，会呈现在元素框之外。
+            hidden 内容会被修剪，并且其余内容是不可见的。
+            scroll 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。该属性无论内容是否溢出都会添加滚动条
+            auto 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。水平、垂直方向的滚动条会自动判断是否添加
+            inherit 规定应该从父元素继承 overflow 属性的值。
+
+        */
+        .box1{
+            width:200px;
+            height: 200px;
+            background-color: #1eed8e;
+            overflow: auto;
+        }
+
+        .box2{
+            width:100px;
+            height: 500px;
+            background-color: #dfa020;
+        }
+
+    </style>
+</head>
+<body>
+    <a href="#">我是一个超大的超链接</a>
+    <div class="box"></div>
+    --------------------------------
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

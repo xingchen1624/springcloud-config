@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery事件绑定</title>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            /*
+            * jquery中常用的绑定事件
+            * 1.bind() ：bind的特点就是会把监听器绑定到目标元素上，有一个绑一个，在页面上的元素不会动态添加的时候使用它没什么问题。
+            * 但如果列表中动态增加一个“列表元素5”，点击它是没有反应的，必须再bind一次才行
+            * 2.eventName(fn)  不能处理动态添加页面元素的情况，部分事件没有
+            * 3.on(eventName,fn)  支持所有事件
+            * */
+            //1.bind()
+            /*$("button").bind("click",function(){
+                $("p").slideToggle();
+            });*/
+
+            //2.eventName(fn)
+            /*$("button").click(function () {
+                alert("click");
+            });*/
+
+            //3.on(eventName,fn)
+            $("button").on("click",function () {
+                alert("on");
+            })
+
+            /*
+            * 1.事件移除
+            * off():移除选中对象的所有事件
+            * off("eventName"):移除选中对象的指定事件
+            * off("eventName",fn) :移除选中对象的指定类型的指定事件(一个对象的一种事件可以重复绑定多次)
+            * */
+            $("button").off();
+        });
+    </script>
+</head>
+<body>
+    <button>我是一个按钮</button>
+    <p class="p1">我是段落啦</p>
+</body>
+</html>

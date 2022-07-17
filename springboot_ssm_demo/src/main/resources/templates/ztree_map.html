@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>ztree和百度地图结合使用</title>
+    <link href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link href="../static/css/zTreeStyle/zTreeStyle.css" th:href="@{css/zTreeStyle/zTreeStyle.css}" rel="stylesheet">
+
+    <script src="../static/js/jquery-1.11.3.js" th:src="@{js/jquery-1.11.3.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{js/bootstrap.min.js}"></script>
+    <script src="../static/js/ztree/jquery.ztree.core.js" th:src="@{js/ztree/jquery.ztree.core.js}"></script>
+    <script type="text/javascript"
+    src="http://api.map.baidu.com/api?v=2.0&ak=Ht3VBDG0aUNRPkHs8ztO9xwu94W58qNF"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/GeoUtils/1.2/src/GeoUtils_min.js"></script>
+
+    <script type="text/javascript"
+        src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/myCss.css" th:href="@{css/myCss.css}"/>
+    <script src="../static/js/ztree/jquery.ztree.exhide.js" th:src="@{js/ztree/jquery.ztree.exhide.js}"></script>
+    <script src="../static/js/ztree/jquery.ztree.excheck.js" th:src="@{js/ztree/jquery.ztree.excheck.js}"></script>
+    <script src="../static/js/ztree/jquery.ztree.exedit.js" th:src="@{js/ztree/jquery.ztree.exedit.js}"></script>
+    <script src="../static/js/ztree/fuzzysearch.js" th:src="@{js/ztree/fuzzysearch.js}"></script>
+    <script type="text/javascript" src="../static/js/myJs.js" th:src="@{js/myJs.js}"></script>
+
+
+</head>
+<body>
+<!--加载地图的div-->
+<div id="map"></div>
+
+<!--左侧栏-->
+<div class="zTreeDemoBackground left">
+    <div id="headTabs">
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+            <li role="presentation" class="active"><a href="#tree" aria-controls="tree" role="tab">机构网格</a></li>
+            <li role="presentation"><a href="#tree2" aria-controls="tree2"  role="tab">社区网格</a></li>
+            <li role="presentation"><a href="#tree3" aria-controls="tree3" role="tab">营销网格</a></li>
+        </ul>
+
+        <div id="search">
+            <input type="text" id="key" value="" placeholder="请输入关键字" autocomplete="off" />
+            <span id="searchIcon" class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </div>
+        <div id="test"></div>
+        <div class="test test-5">
+            <div class="scrollbar">
+                <div id="myTabContent" class="tab-content">
+                    <div id="tree" class="tab-pane in active">
+                        <div class="scrollbar">
+                            <ul id="treeDemo" class="ztree"></ul>
+                        </div>
+                    </div>
+                    <div id="tree2" class="tab-pane">
+                        hello
+                    </div>
+                    <div id="tree3" class="tab-pane">
+                        hi
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="zTreeDemoBackground left2">
+
+    <div class="panel-footer alignCenter bottomDiv">
+        <button class="btn btn-info" onclick="saveGridInfo2()">确定</button>
+        <button class="btn btn-warning" onclick="cancel2()">取消</button>
+    </div>
+</div>
+
+<div class="zTreeDemoBackground bottom">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">机构网格信息</h3>
+        </div>
+        <div class="panel-body">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <label for="gridNo">网格编号</label>
+                </span>
+                <input type="text" id="gridNo" name="gridNo" class="form-control" placeholder=""
+                       aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <label for="gridName">网格名称</label>
+                </span>
+                <input type="text" id="gridName" name="gridName" class="form-control" placeholder=""
+                       aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <label for="supGridNo">上级网格</label>
+                </span>
+                <input type="text" id="supGridNo" name="supGridNo" class="form-control" placeholder=""
+                       aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="panel-footer alignCenter bottomDiv">
+            <button class="btn btn-info" onclick="saveGridInfo()">确定</button>
+            <button class="btn btn-warning" onclick="cancel()">取消</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="control" class="alignCenter">
+    <!--<button onclick = "polyline.enableEditing();polygon.enableEditing();">开启线、面编辑功能</button>
+    <button onclick = "polyline.disableEditing();polygon.disableEditing();">关闭线、面编辑功能</button>-->
+    <button class="btn btn-danger" onclick="clearAll()">清空</button>
+    <button class="btn btn-success" onclick="saveGrid()">保存网格</button>
+    <button class="btn btn-info" onclick="initTabs()">编辑网格</button>
+    <button class="btn btn-info" onclick="getSelectedNodes()">获取选中节点</button>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文档流</title>
+    <style type="text/css">
+        .box1{
+            /*width:100px;*/
+            height:100px;
+            background-color: #dfa020;
+            /*
+                当元素的宽、高为 auto的时候，指定内边距不会影响可见框的大小，而是会自动
+                修改宽度以适应内边距，高度根据元素里的内容自动确定
+            */
+            padding-left: 100px
+        }
+        .box2{
+            width:100px;
+            height:100px;
+            background-color: #e0d1ea;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        文档流处在网页的最底层，表示页面中的一个位置，我们创建的元素默认都处在文档流中
+
+        元素在文档流中的特点
+        ①块元素
+        块元素在文档流中默认是自上向下排列，因为块元素独占一行
+        块元素在文档流中默认宽度 = 父元素的宽度    width=auto
+        块元素在文档流中的默认高度 = 子元素或内容区的高度
+        ②内联元素
+        内联元素在文档流中默认自左向右排列，因为内联元素不独占一行，一行放不开则自动换到下一行展示
+        内联元素的宽和高默认都等于内容的宽和高
+    -->
+    <div class="box1">div1</div>
+    <div class="box2"></div>
+    <span style="background-color: #00BE67">我是一个span1</span>
+    <span style="background-color: #00BE67">我是一个span2</span>
+    <span style="background-color: #00BE67">我是一个span3</span>
+</body>
+</html>
