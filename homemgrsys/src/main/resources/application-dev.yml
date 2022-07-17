@@ -1,0 +1,92 @@
+
+#driver-class-name: com.mysql.jdbc.Driver适用于mysql5
+#com.mysql.cj.jdbc.Driver适用于mysql6及以上
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/localtestdb?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid的配置，不需要配置类
+    druid:
+      # 下面为连接池的补充设置，应用到上面所有数据源中
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall,log4j
+      use-global-data-source-stat: true
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 配置监控服务器
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
+        reset-enable: false
+        url-pattern: /druid/*
+        # 添加IP白名单
+        #allow:
+        # 添加IP黑名单，当白名单和黑名单重复时，黑名单优先级更高
+        #deny:
+        enabled: true
+      web-stat-filter:
+        # 添加过滤规则
+        url-pattern: /*
+        # 忽略过滤格式
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+        
+#服务器端口
+server:
+  port: 80
+  servlet:
+    context-path: /
+  
+#springboot整合mybatis配置
+#mybatis:
+  #定义别名,可省略写mybatis的xml中的resultType的全路径
+  #type-aliases-package: com.lzc.hmgr.bo
+  #Mybatis扫描(放在resources路径下)
+  #mapper-locations: classpath*:mapper/*.xml
+  
+#springboot整合mybatis-plus配置
+mybatis-plus:
+  #定义别名,可省略写mybatis的xml中的resultType的全路径
+  type-aliases-package: com.lzc.hmgr.bo
+  #Mybatis的xml文件扫描路径(放在resources路径下，如果多个则用逗号分隔)
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    #开启数据库列名到java属性名驼峰映射    
+    map-underscore-to-camel-case: true
+    #将执行sql打印出来，一般用于开发测试阶段
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #是否开启缓存
+    cache-enabled: false
+    #MyBatis 自动映射策略，通过该配置可指定 MyBatis 是否并且如何来自动映射数据表字段与对象的属性
+    #full:对所有的resultMap都进行自动映射
+    auto-mapping-behavior: full
+    #指定当结果集中值为 null 的时候是否调用映射对象的 Setter（Map 对象时为 put）方法，
+    #通常运用于有 Map.keySet() 依赖或 null 值初始化的情况。
+    #通俗的讲，即 MyBatis 在使用 resultMap 来映射查询结果中的列，如果查询结果中包含空值的列，
+    #则 MyBatis 在映射的时候，不会映射这个字段，这就导致在调用到该字段的时候由于没有映射，取不到而报空指针异常
+    call-setters-on-nulls: true
+  global-config:
+    db-config:
+      #数据库主键的数据类型必须是String，自动生成UUID进行赋值
+      id-type: assign_uuid
+    #是否控制台 print mybatis-plus 的 LOGO
+    banner: false
