@@ -2,7 +2,6 @@ package com.lzc.hmgr.controller;
 
 
 import com.lzc.hmgr.bo.HomeUser;
-import com.lzc.hmgr.bo.User;
 import com.lzc.hmgr.service.IHomeUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
