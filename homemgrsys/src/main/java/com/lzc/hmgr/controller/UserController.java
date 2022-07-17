@@ -39,8 +39,8 @@ public class UserController {
      * 根据工号查询用户
      **/
     @GetMapping("/find/{userNo}")
-    public User findByUserNo(@PathVariable("userNO") String userNO){
-        return userService.getById(userNO);
+    public User findByUserNo(@PathVariable("userNo") String userNo){
+        return userService.getById(userNo);
     }
 
     /***

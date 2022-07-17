@@ -21,8 +21,7 @@ import java.util.List;
 public class CodeGenerator {
     public static void main(String[] args) {
         List<String> tables = new ArrayList<>();
-        tables.add("t_user");
-        tables.add("t_role");
+        tables.add("home_user");
 
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/localtestdb?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC", "root", "root")
                 .globalConfig(builder -> {
