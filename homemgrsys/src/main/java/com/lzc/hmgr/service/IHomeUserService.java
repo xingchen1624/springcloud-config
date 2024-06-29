@@ -1,5 +1,6 @@
 package com.lzc.hmgr.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lzc.hmgr.bo.HomeUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -23,5 +24,10 @@ public interface IHomeUserService extends IService<HomeUser> {
      * @return java.util.List<com.lzc.hmgr.bo.HomeUser>
      **/
     List<HomeUser> userListByName(String userName);
+
+    /**
+     * 分页查询-自定义
+     **/
+    List<HomeUser> selectPageByDto(Page page, HomeUser userDto);
 
 }

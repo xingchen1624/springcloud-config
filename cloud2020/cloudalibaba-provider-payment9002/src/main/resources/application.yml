@@ -7,14 +7,23 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848 #配置Nacos地址
-        # 换成nginx的1111端口，做集群
+        server-addr: localhost:8848 #配置Nacos地址 -本地单节点测试
+        #这里还可以指定服务提供者提供的服务注册的命名空间，这个编号是在nacos控制台新建命名空间时生成的
+        #比如我们为了隔离开发、测试、生产环境的配置信息，配置了 dev,uat,prod三个命名空间，就可以通过
+        #该配置表名该服务注册在哪个命名空间下，从而实现隔离
+        #namespace: 14226a0d-799f-424d-8905-162f6a8bf409 # Nacos 命名空间 dev 的编号
+        # 换成nginx的1111端口，做集群,为防止单节点nacos挂掉，可以给nacos做集群管理
         #server-addr: 192.168.111.144:1111
 
+#Nacos Discovery 基于 Spring Boot Actuator，提供了自定义监控端点 nacos-discovery，获取 Nacos Discovery 配置项，和订阅的服务信息
 management:
   endpoints:
     web:
       exposure:
-        include: '*'
-
+        include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点  
+  endpoint:
+    # Health 端点配置项，对应 HealthProperties 配置类
+    health:
+      enabled: true # 是否开启。默认为 true 开启。
+      show-details: ALWAYS # 何时显示完整的健康信息。默认为 NEVER 都不展示。可选 WHEN_AUTHORIZED 当经过授权的用户；可选 ALWAYS 总是展示。
 

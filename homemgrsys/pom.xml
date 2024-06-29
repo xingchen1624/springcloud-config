@@ -12,6 +12,8 @@
     <artifactId>homemgr</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>homemgr</name>
+    <!--默认打jar包，如果要部署到tomcat，可以改为war方式打包-->
+    <packaging>war</packaging>
     <description>springboot+springMvc+mybatis plus+mysql</description>
     <properties>
         <java.version>1.8</java.version>
@@ -27,7 +29,22 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
+                <!--去除内嵌tomcat,如果不需要部署到其它Tomcat容器，无需加该步-->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
             </exclusions>
+        </dependency>
+        <!--
+            添加servlet的依赖,使用内置tomcat则不需要加servlet依赖，注意这里的scope是provided，
+            表示这个依赖只能作用在编译和测试时，部署在tomcat启动运行时就不在生效，因为tomcat容器
+            里也有servlet相关包
+        -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!--mybatis-plus依赖-->
         <dependency>
@@ -58,6 +75,38 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.22</version>
         </dependency>
+        <!--引入redis依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--引入spring cache依赖，结合redis做缓存管理-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+            <version>2.1.3.RELEASE</version>
+        </dependency>
+        <!--在序列化对象时涉及到 Java 8 的日期/时间类型 java.time.LocalDate，
+        但默认情况下 Jackson 不支持这种类型。要解决这个问题，可以添加 Jackson 模块 
+        “com.fasterxml.jackson.datatype:jackson-datatype-jsr310”
+        -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.13.2</version>
+        </dependency>
+        
+        <!--连接池-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <!--引入spring-session依赖，使用spring提供的session管理取代容器来管理session-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+        
         <!--引入log4j-->
         <dependency>
             <groupId>log4j</groupId>
@@ -74,6 +123,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <!--
+                这个设置为true表示，依赖不传递，举个栗子，A项目里面引用了lombok，
+                设置了optional为true，B项目里面引用A,那么A项目依赖的lombok在B项目不会出现
+            -->
             <optional>true</optional>
         </dependency>
         <!--导入Swagger需要的jar包 开始-->
@@ -103,6 +156,8 @@
     </dependencies>
     
     <build>
+        <!--打包后的项目名称-->
+        <finalName>homeManager</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -118,6 +173,19 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+    
+            <!-- 
+                在工作中,很多情况下我们打包是不想执行测试用例的可能是测试用例不完事,
+                或是测试用例会影响数据库数据跳过测试用例执 
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!--跳过项目运行测试用例-->
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
         </plugins>

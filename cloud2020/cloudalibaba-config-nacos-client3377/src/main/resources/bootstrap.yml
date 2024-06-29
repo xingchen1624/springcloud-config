@@ -11,9 +11,10 @@ spring:
         server-addr: localhost:8848 #Nacos服务注册中心地址
       config:
         server-addr: localhost:8848 #Nacos作为配置中心地址
-        file-extension: yml #指定yml格式的配置.注意这里和nacos中都用yml或者都用yaml,不能混用。新版本的nacos据说已修复
+        file-extension: yaml #指定yaml格式的配置.注意这里和nacos中都用yml或者都用yaml,不能混用。新版本的nacos据说已修复
         group: DEV_GROUP
-        namespace: 833d958a-f380-4a2b-bca6-83a7f47d89b2
+        namespace: 66b9873e-9e08-4817-a4b6-f0bb345f5493  #本地单节点nacos的开发命名空间编号
+        #namespace: 833d958a-f380-4a2b-bca6-83a7f47d89b2
 
 
 # ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}

@@ -1,11 +1,12 @@
-
+#本地使用配置文件
 #driver-class-name: com.mysql.jdbc.Driver适用于mysql5
 #com.mysql.cj.jdbc.Driver适用于mysql6及以上
 spring:
   datasource:
+    #本地mysql路径
+    url: jdbc:mysql://localhost:3306/localtestdb?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: root
-    url: jdbc:mysql://localhost:3306/localtestdb?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     #druid的配置，不需要配置类
@@ -49,14 +50,31 @@ spring:
         url-pattern: /*
         # 忽略过滤格式
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
-        
-#服务器端口
+  #配置spring session使用redis进行管理,实现session多服务器共享
+  session:
+#    timeout: 10s #设置session失效时间,这里设置不生效，原因待查，目前使用在springboot启动类上用注解设置，实测有效
+    store-type: redis # 修改spring-session存储配置，默认存储到服务器内存中，现在设置存到redis中（关键）
+#  部署到服务器之前，要在服务器上docker启动redis服务，命令如下
+#  docker run -p 6379:6379 --name redis -d redis:3.2
+#  docker exec -it redis redis-cli
+  redis:
+    port: 6379
+    host: 192.168.159.105
+    database: 0
+  #指定spring cache的底层实现使用redis，项目中必须整合redis才能使用
+  cache:
+    type: redis
+    redis:
+      cache-null-values: true  #是否缓存空值，防止缓存穿透
+
+#服务器端口(这里因为将tomcat替换为了外部的tomcat，不再使用内嵌的tomcat，该端口配置失效了，看网上
+#文章，只有在使用内嵌tomcat时，端口配置才生效，使用外部tomcat默认端口是8080)
 server:
   port: 80
   servlet:
     context-path: /
-  
-#springboot整合mybatis配置
+
+  #springboot整合mybatis配置
 #mybatis:
   #定义别名,可省略写mybatis的xml中的resultType的全路径
   #type-aliases-package: com.lzc.hmgr.bo

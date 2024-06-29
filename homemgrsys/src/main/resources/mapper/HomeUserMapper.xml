@@ -17,5 +17,22 @@
         <result column="updater" property="updater" />
         <result column="update_time" property="updateTime" />
     </resultMap>
+    
+    <!--分页查询sql-->
+    <sql id="selectByDtoSql">
+        select * from home_user t
+        <where>
+            <if test="userDto.userName != null and userDto.userName != '' ">
+                AND t.user_name like CONCAT('%',#{userDto.userName},'%')
+            </if>
+            <if test="userDto.age != null">
+                AND t.age > #{userDto.age}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="selectPageByDto" resultType="com.lzc.hmgr.bo.HomeUser">
+        <include refid="selectByDtoSql"></include>
+    </select>
 
 </mapper>
