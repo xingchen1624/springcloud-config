@@ -14,10 +14,12 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,9 +52,9 @@ public class HomeUserController {
     
     @PostMapping("/login")
     public HomeUser login(@RequestBody HomeUser user, HttpSession session){
+        HomeUser homeUser = userService.getById(user.getUserId());
         //将session保存到redis中，共享给其它服务器
         session.setAttribute("loginUser", user);
-        HomeUser homeUser = userService.getById(user.getUserId());
         logger.debug("欢迎"+user.getUserName()+"登录系统");
         return homeUser;
     }
@@ -85,6 +87,18 @@ public class HomeUserController {
     public List<HomeUser> userList(HttpSession session){
         //验证是否可以拿到session
         Object loginUser = session.getAttribute("loginUser");
+        String id = session.getId();
+        logger.debug("sessionId:"+id);
+        StringBuilder s = new StringBuilder("");
+        
+        Enumeration<String> attributeNames = session.getAttributeNames();
+        while (attributeNames.hasMoreElements()){
+            String nextElement = attributeNames.nextElement();
+            logger.debug("session中的属性:"+nextElement);
+            s.append(nextElement).append(":").append(session.getAttribute(nextElement));
+        }
+        logger.debug("session中的属性:"+s);
+
         if(loginUser == null){
             //重新登录，定位到登录页面
             logger.debug("您尚未登录,请登录后再操作~");
@@ -108,8 +122,9 @@ public class HomeUserController {
      **/
     @Cacheable(value="userInfo",key = "#userNo")
     @GetMapping("/find/id/{userNo}")
-    public HomeUser findByUserNo(@PathVariable("userNo") String userNo){
+    public HomeUser findByUserNo(@PathVariable("userNo") String userNo) throws InterruptedException {
         HomeUser homeUser = userService.getById(userNo);
+        Thread.sleep(3000);
         logger.debug(userNo+"对应家庭成员:"+homeUser);
         return homeUser;
     }

@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lzc.hmgr</groupId>
-    <artifactId>homemgr</artifactId>
+    <artifactId>homemgrsys</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>homemgr</name>
     <!--默认打jar包，如果要部署到tomcat，可以改为war方式打包-->

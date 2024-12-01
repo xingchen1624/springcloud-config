@@ -11,7 +11,6 @@
 package com.lzc.hmgr.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
@@ -22,11 +21,11 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.util.DigestUtils;
 
-import javax.annotation.Resource;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -78,6 +77,23 @@ public class RedisConfig extends CachingConfigurerSupport {
         };
     }
 
+    // 配置redisTemplate
+    @Bean
+    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory factory){
+        RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(factory);
+        // 设置key的序列化
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        // value的序列化
+        Jackson2JsonRedisSerializer jsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        redisTemplate.setValueSerializer(jsonRedisSerializer);
+        redisTemplate.setHashValueSerializer(jsonRedisSerializer);
+
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
+
     /**
      * 配置缓存管理器
      * @param factory 线程连接工厂
@@ -98,13 +114,13 @@ public class RedisConfig extends CachingConfigurerSupport {
 
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 //默认没有特殊指定的缓存，设置缓存过期时间1分钟
-                .entryTtl(Duration.ofMinutes(1L))
+                .entryTtl(Duration.ofMinutes(10L))
                 //设置缓存前缀
-                //.prefixCacheNameWith("redis:cache:")
+                .prefixCacheNameWith("redis:cache:")
                 // 覆盖默认的构造key，否则会多出一个冒号 原规则：cacheName::key  现规则：cacheName:key
                 .computePrefixWith(name -> name + ":")
                 //禁止缓存null值 -#是否缓存空值，一般要运行缓存空值，防止缓存穿透
-                //.disableCachingNullValues()
+                .disableCachingNullValues()
                 //添加键值序列化配置
                 .serializeKeysWith(keyPair())
                 .serializeValuesWith(valuePair());

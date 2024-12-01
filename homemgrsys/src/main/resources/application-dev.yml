@@ -50,10 +50,13 @@ spring:
         url-pattern: /*
         # 忽略过滤格式
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      remove-abandoned: true
+      remove-abandoned-timeout: 2
   #配置spring session使用redis进行管理,实现session多服务器共享
   session:
 #    timeout: 10s #设置session失效时间,这里设置不生效，原因待查，目前使用在springboot启动类上用注解设置，实测有效
     store-type: redis # 修改spring-session存储配置，默认存储到服务器内存中，现在设置存到redis中（关键）
+    
 #  部署到服务器之前，要在服务器上docker启动redis服务，命令如下
 #  docker run -p 6379:6379 --name redis -d redis:3.2
 #  docker exec -it redis redis-cli
