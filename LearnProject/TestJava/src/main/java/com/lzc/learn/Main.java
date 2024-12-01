@@ -2,6 +2,9 @@ package com.lzc.learn;
 
 import com.lzc.learn.pojo.User;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import java.time.*;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,7 +15,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         //1.lambda表达式
         List<String> list = Arrays.asList("a", "b", "c");
         list.forEach(str -> System.out.println(str));
@@ -96,5 +99,12 @@ public class Main {
         Arrays.stream(arr).forEach(i -> {
             System.out.print(i + " ");
         });
+        
+        //8.调用JavaScript
+        System.out.println("---------------------调用JavaScript---------------------");
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
+        System.out.println(engine.getClass().getName());
+        System.out.println(engine.eval("function f() {return 'hello';}; f() + ' world!';"));
     }
 }
